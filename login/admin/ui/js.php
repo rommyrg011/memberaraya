@@ -63,52 +63,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const tierSelect = document.getElementById('tier-select');
     const idMemberInput = document.getElementById('id-member');
 
-    // Tambahkan event listener ke kedua elemen input
+    // Tambahkan event listener untuk memicu pembuatan ID
     if (namaLengkapInput && tierSelect && idMemberInput) {
         namaLengkapInput.addEventListener('input', generateId);
         tierSelect.addEventListener('change', generateId);
     }
 
-    // Fungsi utama untuk menghasilkan ID
+    // Fungsi utama untuk menghasilkan ID baru
     function generateId() {
         const nama = namaLengkapInput.value.trim();
         const tier = tierSelect.value;
         
-        // Periksa apakah nama tidak kosong dan tier sudah dipilih
+        // Periksa apakah input nama dan pilihan tier sudah diisi
         if (nama !== '' && tier !== '-- Pilih Tier --') {
-            const prefix = getTierPrefix(tier);
-            const randomCode = generateRandomCode(6); // Buat 6 karakter acak
-            idMemberInput.value = prefix + randomCode;
+            const randomId = generateRandomCode(8); // Buat ID acak dengan 8 karakter
+            idMemberInput.value = randomId;
         } else {
             // Jika salah satu atau keduanya kosong, hapus ID
             idMemberInput.value = '';
         }
     }
 
-    // Fungsi untuk mendapatkan awalan ID berdasarkan tier
-    function getTierPrefix(tier) {
-        switch (tier) {
-            case 'Bronze':
-                return 'BR';
-            case 'Silver':
-                return 'SL';
-            case 'Gold':
-                return 'GD';
-            default:
-                return ''; // Jika tier tidak terdaftar
-        }
-    }
-
     // Fungsi untuk membuat string acak dengan panjang tertentu
     function generateRandomCode(length) {
         let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         const charactersLength = characters.length;
         for (let i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return result;
     }
+    
+    // Fungsi 'getTierPrefix' sebelumnya telah dihapus karena tidak lagi diperlukan.
 });
 </script>
 
@@ -120,8 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const idMemberInput = document.getElementById('id-member');
     const expiredDateInput = document.getElementById('expired-date');
 
-    // Listener untuk menghasilkan ID member
-    if (namaLengkapInput && tierSelect && idMemberInput) {
+    // Listener untuk menghasilkan ID member dan tanggal
+    if (namaLengkapInput && tierSelect && idMemberInput && expiredDateInput) {
         namaLengkapInput.addEventListener('input', generateIdAndDate);
         tierSelect.addEventListener('change', generateIdAndDate);
     }
@@ -133,10 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Periksa apakah nama tidak kosong dan tier sudah dipilih
         if (nama !== '' && tier !== '-- Pilih Tier --') {
-            // Logika untuk ID Member
-            const prefix = getTierPrefix(tier);
-            const randomCode = generateRandomCode(6); 
-            idMemberInput.value = prefix + randomCode;
+            // Logika untuk ID Member yang sepenuhnya acak
+            const randomId = generateRandomCode(8); // Buat ID acak dengan panjang 8 karakter
+            idMemberInput.value = randomId;
 
             // Logika untuk tanggal kedaluwarsa
             const expiredDate = getExpiredDate(tier);
@@ -149,24 +135,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fungsi untuk mendapatkan awalan ID berdasarkan tier
-    function getTierPrefix(tier) {
-        switch (tier) {
-            case 'Bronze':
-                return 'BR';
-            case 'Silver':
-                return 'SL';
-            case 'Gold':
-                return 'GD';
-            default:
-                return '';
-        }
-    }
-
     // Fungsi untuk membuat string acak dengan panjang tertentu
+    // Hapus getTierPrefix karena tidak lagi diperlukan
     function generateRandomCode(length) {
         let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        // Karakter yang akan digunakan: huruf besar, huruf kecil, dan angka
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         const charactersLength = characters.length;
         for (let i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -193,9 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         today.setDate(today.getDate() + daysToAdd);
         
-        // Format tanggal menjadi DD-MM-YYYY
+        // Format tanggal menjadi YYYY-MM-DD (format standar input date)
         const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
         const yyyy = today.getFullYear();
 
         return `${yyyy}-${mm}-${dd}`;

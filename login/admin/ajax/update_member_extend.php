@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pembayaran = $_POST['pembayaran'];
     $nama = $_POST['nama'];
     $wa = $_POST['wa'];
-    $operator = 'NAMA_OPERATOR_SAAT_INI';
+    $operator = $_SESSION['nama_lengkap'];;
     $status = 'Aktif';
 
     $duration_days = 0;

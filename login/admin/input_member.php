@@ -32,13 +32,7 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Operator :</label>
-                                <select type="text" class="form-control" name="operator">
-                                  <option hidden> -- Pilih Operator --</option>
-                                  
-                                </select>
-                            </div>
+                            <input type="hidden" name="operator" value="<?=$_SESSION['nama_lengkap']; ?>">
 
                             <div class="mb-3">
                                 <label class="form-label">ID Member :</label>

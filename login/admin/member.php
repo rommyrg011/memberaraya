@@ -143,10 +143,10 @@ include '../function.php';
                 <div class="form-group">
                   <label for="extendTier">Pilih Tier</label>
                   <select class="form-control" id="extendTier" name="tier" required>
-                    <option value="">Pilih Tier</option>
-                    <option value="Bronze">Bronze (30 Hari)</option>
-                    <option value="Silver">Silver (90 Hari)</option>
-                    <option value="Gold">Gold (180 Hari)</option>
+                    <option value="" hidden>-- Pilih Tier --</option>
+                    <option value="Bronze">Bronze</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
                   </select>
                 </div>
                 <div class="form-group">
