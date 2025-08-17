@@ -15,10 +15,17 @@
             <span>Game</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="#available-units">
             <i class="fa-brands fa-playstation"></i>
             <span>Unit</span>
+          </a>
+        </li> -->
+        
+        <li>
+          <a href="#location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Lokasi</span>
           </a>
         </li>
         <li>
@@ -28,13 +35,7 @@
           </a>
         </li>
         <li>
-          <a href="#location">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Lokasi</span>
-          </a>
-        </li>
-        <li>
-          <a href="login/" class="login-link">
+          <a href="login/">
             <i class="fas fa-user"></i>
             <span>Login</span>
           </a>

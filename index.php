@@ -1,63 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sewa PS - Rental PlayStation Terbaik di Banjarmasin!</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-  </head>
+<?php include 'ui/head.php'; ?>
   <body>
-    <nav class="navbar">
-      <div class="nav-brand">
-        <a href="#">Sewa PS</a>
-      </div>
-      <ul class="nav-links">
-        <li>
-          <a href="#features">
-            <i class="fas fa-hand-sparkles"></i>
-            <span>Fasilitas</span>
-          </a>
-        </li>
-        <li>
-          <a href="#games">
-            <i class="fas fa-gamepad"></i>
-            <span>Game</span>
-          </a>
-        </li>
-        <li>
-          <a href="#available-units">
-            <i class="fa-brands fa-playstation"></i>
-            <span>Unit</span>
-          </a>
-        </li>
-        <li>
-          <a href="#contact">
-            <i class="fas fa-headset"></i>
-            <span>Kontak</span>
-          </a>
-        </li>
-        <li>
-          <a href="#location">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Lokasi</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="login-link" id="profileLink">
-            <i class="fas fa-user"></i>
-            <span>Saya</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <?php include 'ui/navbar.php'; ?>
 
     <header class="hero">
       <div class="hero-content">
@@ -66,7 +9,7 @@
           Sewa PlayStation terbaru dengan harga terjangkau. Nikmati game
           favoritmu sekarang!
         </p>
-        <a href="#available-units" class="btn">Lihat Unit Tersedia</a>
+        
       </div>
     </header>
 
@@ -163,7 +106,7 @@
         </p>
       </section>
 
-      <section id="available-units" class="section">
+      <!-- <section id="available-units" class="section">
         <h2>Unit Tersedia</h2>
         <div class="unit-list">
           <div class="unit-item">
@@ -207,37 +150,9 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <section id="contact" class="section bg-light">
-        <h2>Hubungi Kami</h2>
-        <div class="contact-content">
-          <p>
-            Siap untuk pengalaman gaming yang tak terlupakan? Hubungi kami
-            sekarang!
-          </p>
-          <div class="contact-details">
-            <p>
-              <i class="fas fa-phone-alt"></i> Telepon:
-              <a href="tel:+6281234567890">+62 812-3456-7890</a>
-            </p>
-            <p>
-              <i class="fab fa-whatsapp"></i> WhatsApp:
-              <a href="https://wa.me/6281234567890" target="_blank"
-                >+62 812-3456-7890</a
-              >
-            </p>
-            <p>
-              <i class="fas fa-envelope"></i> Email:
-              <a href="mailto:info@sewaps.com">info@sewaps.com</a>
-            </p>
-            <p>
-              <i class="fas fa-map-marker-alt"></i> Alamat: Jl. Contoh No. 123,
-              Banjarmasin, Kalimantan Selatan
-            </p>
-          </div>
-        </div>
-      </section>
+      
 
       <section id="location" class="section">
         <h2>Lokasi Kami</h2>
@@ -256,30 +171,33 @@
           Kunjungi lokasi kami atau hubungi untuk informasi lebih lanjut!
         </p>
       </section>
+
+      <section id="contact" class="section bg-light">
+        <h2>Hubungi Kami</h2>
+        <div class="contact-content">
+          <div class="contact-details">
+            <p>
+              <i class="fab fa-whatsapp"></i> WhatsApp:
+              <a href="https://wa.me/6281234567890" target="_blank"
+                >+62 812-3456-7890</a
+              >
+            </p>
+            <p>
+              <i class="fas fa-envelope"></i> Email:
+              <a href="mailto:info@sewaps.com">info@sewaps.com</a>
+            </p>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Alamat: Jl. Contoh No. 123,
+              Banjarmasin, Kalimantan Selatan
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
       <p>© 2025 Sewa PS. Semua Hak Dilindungi.</p>
     </footer>
-
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>Login ke Akun Anda</h2>
-        <form class="login-form">
-          <div class="form-group">
-            <label for="username">Username / Email:</label>
-            <input type="text" id="username" name="username" required />
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required />
-          </div>
-          <button type="submit" class="btn">Login</button>
-          <p class="register-link">Belum punya akun? <a href="#">Daftar Sekarang</a></p>
-        </form>
-      </div>
-    </div>
 
     <script src="scroll.js"></script>
     <script src="script.js"></script>
