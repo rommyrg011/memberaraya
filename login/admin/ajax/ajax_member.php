@@ -15,7 +15,6 @@ if ($koneksi->connect_error) {
     exit;
 }
 
-// Perbaikan: Logika untuk memperbarui status member yang sudah expired
 // Menggunakan tanggal hari ini untuk perbandingan. Member dianggap expired jika tanggal expirednya lebih kecil dari tanggal hari ini
 $current_date = date('Y-m-d');
 $sql_update_expired = "UPDATE member SET status = 'Tidak Aktif' WHERE expired < ? AND status = 'Aktif'";
@@ -48,7 +47,8 @@ if ($columnIndex > 0 && $columnIndex < count($columnNames) && isset($columnNames
 }
 
 ## Query untuk total record (tanpa filter)
-$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM member");
+// Tambahkan klausa WHERE untuk hanya menghitung member yang aktif
+$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM member WHERE status = 'Aktif'");
 if (!$sel) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
@@ -58,9 +58,10 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecords = $records['allcount'];
 
 ## Query untuk total record (dengan filter)
-$searchQuery = " ";
+// Tambahkan klausa WHERE 'status = 'Aktif'' pada bagian awal kueri
+$searchQuery = " AND status = 'Aktif' ";
 if ($searchValue != '') {
-   $searchQuery = " AND (cabang LIKE '%".$searchValue."%' OR
+   $searchQuery .= " AND (cabang LIKE '%".$searchValue."%' OR
         operator LIKE '%".$searchValue."%' OR
         memberid LIKE '%".$searchValue."%' OR
         nama LIKE '%".$searchValue."%' OR
@@ -80,7 +81,8 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Ambil data
-$query = "SELECT * FROM member WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT ".$row.",".$rowperpage;
+// Tambahkan klausa WHERE 'status = 'Aktif'' pada bagian awal kueri
+$query = "SELECT * FROM member WHERE status = 'Aktif' ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT ".$row.",".$rowperpage;
 $empRecords = mysqli_query($koneksi, $query);
 
 if (!$empRecords) {
@@ -112,7 +114,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
             $class = 'alert-info';
             break;
         default:
-            $class = 'alert-primary'; // Warna default jika tier tidak dikenal
+            $class = ''; // Warna default jika tier tidak dikenal
             break;
     }
 
