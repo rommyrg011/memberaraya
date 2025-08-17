@@ -1,3 +1,4 @@
+
 <nav
             class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
           >
@@ -95,7 +96,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Rommy Gunawan</span
+                    ><?php echo $_SESSION['nama_lengkap']; ?></span
                   >
                   <img
                     class="img-profile rounded-circle"

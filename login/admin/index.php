@@ -1,3 +1,24 @@
+<?php 
+// session_start() harus diletakkan di baris paling atas
+session_start();
+
+// Cek apakah user sudah login
+// Jika belum, alihkan ke halaman login
+if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
+    header("location:../");
+    exit();
+}
+
+// Cek level user
+// Alihkan jika level tidak sesuai
+// if ($_SESSION['level'] == "operator") {
+//     // Jika user adalah operator, alihkan ke halaman operator
+//     header("location:./?admin");
+//     exit();
+// }
+// Jika user adalah admin, biarkan dia di halaman ini
+?>
+
 <?php include 'ui/head.php'; ?>
 
   <body id="page-top">
@@ -14,7 +35,15 @@
             >
               <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             </div>
-        
+        <?php 
+	// session_start();
+ 
+	// cek apakah yang mengakses halaman ini sudah login
+	// if($_SESSION['level']==""){
+	// 	header("location:index.php?pesan=gagal");
+	// }
+  ?>
+ 
             <div class="row">
               <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">

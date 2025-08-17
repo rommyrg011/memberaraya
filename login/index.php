@@ -103,6 +103,19 @@
                                             </div>";
                                         }
 
+                                        //Jika berhasil Login admin
+                                        if (isset($_GET['operator'])) {
+                                            echo "
+                                            <div class='alert alert-info alert-dismissible'>
+                                                <center>
+                                                <i class='fa fa-refresh fa-spin'></i>
+                                                <strong>Login Sukses! Tunggu Sebentar...</strong>
+                                        
+                                                </center>
+                                                <meta http-equiv='refresh' content='3; url=admin/'/>
+                                            </div>";
+                                        }
+
                                         ?>
 
                                         <div class="form-floating mb-3">
