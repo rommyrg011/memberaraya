@@ -30,16 +30,19 @@ include '../function.php';
               <h4 class="m-0 font-weight-bold text-primary text-center">Member <br> Araya Gamestation</h4>
               <div class="text-center my-2">
                 <a href="input_member.php" class="btn btn-secondary btn-sm btn-mobile">
-                  <i class="fas fa-plus"></i> Tambah
+                  <i class="fas fa-plus"></i> Add
                 </a>
                 <button id="editRow" class="btn btn-warning btn-sm btn-mobile btn-xs" disabled>
                   <i class="fas fa-edit"></i> Edit
                 </button>
                 <button id="deleteRow" class="btn btn-danger btn-sm btn-mobile btn-xs" disabled>
-                  <i class="fas fa-trash"></i> Hapus
+                  <i class="fas fa-trash"></i> Delete
                 </button>
                 <button id="extendRow" class="btn btn-info btn-sm btn-mobile btn-xs" disabled>
-                  <i class="fas fa-redo"></i> Perpanjang
+                  <i class="fas fa-redo"></i> extend
+                </button>
+                <button id="printRow" class="btn btn-primary btn-sm btn-mobile btn-xs" disabled>
+                  <i class="fas fa-address-card"></i> Print
                 </button>
               </div>
               <div id="alertMessage"></div>
@@ -73,7 +76,7 @@ include '../function.php';
                       <th>STATUS</th>
                       <th>PEMBAYARAN</th>
                       <th>POINT</th>
-                    </tr>
+                      <th>BARCODE</th> </tr>
                   </thead>
                   <tbody>
                   </tbody>
@@ -199,8 +202,14 @@ include '../function.php';
           { "data": "status" },
           { "data": "pembayaran" },
           { "data": "semua_point" },
+          {
+            "data": "memberid",
+            "orderable": false,
+            "render": function(data, type, row) {
+              return '<img src="ajax/generate_barcode.php?id=' + data + '" alt="Barcode" style="height: 50px;">';
+            }
+          }
         ],
-        "order": [[ 3, "asc" ]]
       });
       
       // Menambahkan kelas 'selected' saat baris diklik
@@ -210,6 +219,7 @@ include '../function.php';
         $('#deleteRow').prop('disabled', false);
         $('#editRow').prop('disabled', false);
         $('#extendRow').prop('disabled', false);
+        $('#printRow').prop('disabled', false);
       });
 
       // Menangani klik tombol delete
@@ -231,6 +241,7 @@ include '../function.php';
                 $('#deleteRow').prop('disabled', true);
                 $('#editRow').prop('disabled', true);
                 $('#extendRow').prop('disabled', true);
+                $('#printRow').prop('disabled', true);
                 selectedRow.nodes().to$().removeClass('selected');
                 
                 setTimeout(function() {
@@ -275,6 +286,7 @@ include '../function.php';
                 $('#deleteRow').prop('disabled', true);
                 $('#editRow').prop('disabled', true);
                 $('#extendRow').prop('disabled', true);
+                $('#printRow').prop('disabled', true);
                 
                 setTimeout(function() {
                   $('#alertMessage').empty();
@@ -316,6 +328,7 @@ include '../function.php';
             $('#deleteRow').prop('disabled', true);
             $('#editRow').prop('disabled', true);
             $('#extendRow').prop('disabled', true);
+            $('#printRow').prop('disabled', true);
             
             setTimeout(function() {
               $('#alertMessage').empty();
@@ -325,6 +338,20 @@ include '../function.php';
             $('#alertMessage').html('<div class="alert alert-danger">Terjadi kesalahan: ' + xhr.responseText + '</div>');
           }
         });
+      });
+
+      // Menangani klik tombol cetak
+      $('#printRow').on('click', function() {
+        var selectedRow = dataTable.row('.selected');
+
+        if (selectedRow.length) {
+          var rowData = selectedRow.data();
+          var memberId = rowData.memberid;
+
+          window.open("cetak_member.php?id=" + memberId, '_blank');
+        } else {
+          alert("Pilih satu baris untuk dicetak.");
+        }
       });
     });
   </script>

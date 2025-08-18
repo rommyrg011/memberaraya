@@ -38,7 +38,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="poin.php">
             <i class="fas fa-keyboard"></i>
-            <span>Input Point</span></a>
+            <span>Point</span></a>
         </li>
 
         <hr class="sidebar-divider" />
@@ -75,8 +75,15 @@
 
         <li class="nav-item active">
           <a class="nav-link" href="cetak_member.php">
-            <i class="fas fa-address-card"></i>
-            <span>Print Member</span>
+            <i class="fas fa-chart-line"></i>
+            <span>Leaderboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="riwayat_member.php">
+            <i class="fas fa-undo"></i>
+            <span>History</span>
           </a>
         </li>
         

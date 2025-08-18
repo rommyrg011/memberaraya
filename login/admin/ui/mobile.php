@@ -17,7 +17,7 @@
         <li class="nav-item">
           <a class="nav-link text-center py-2" href="poin.php">
           <i class="fas fa-keyboard"></i>
-            <span class="small">Input Point</span>
+            <span class="small">Point</span>
           </a>
         </li>
        
@@ -51,8 +51,15 @@
 
         <li class="nav-item">
           <a class="nav-link text-center py-2" href="cetak_member.php">
-          <i class="fas fa-address-card"></i>
-            <span class="small">Print Member</span>
+          <i class="fas fa-chart-line"></i>
+            <span class="small">Leaderboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-center py-2" href="riwayat_member.php">
+          <i class="fas fa-undo"></i>
+            <span class="small">History</span>
           </a>
         </li>
       </ul>
