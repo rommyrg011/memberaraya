@@ -76,7 +76,7 @@ include '../function.php';
                       <th>STATUS</th>
                       <th>PEMBAYARAN</th>
                       <th>POINT</th>
-                      <th>BARCODE</th> </tr>
+                    </tr>
                   </thead>
                   <tbody>
                   </tbody>
@@ -202,14 +202,8 @@ include '../function.php';
           { "data": "status" },
           { "data": "pembayaran" },
           { "data": "semua_point" },
-          {
-            "data": "memberid",
-            "orderable": false,
-            "render": function(data, type, row) {
-              return '<img src="ajax/generate_barcode.php?id=' + data + '" alt="Barcode" style="height: 50px;">';
-            }
-          }
         ],
+        // "order": [[ 3, "asc" ]]
       });
       
       // Menambahkan kelas 'selected' saat baris diklik
