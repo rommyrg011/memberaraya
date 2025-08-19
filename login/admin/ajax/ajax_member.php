@@ -1,19 +1,14 @@
 <?php
 
 // Aktifkan laporan error PHP untuk debugging
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Sertakan file koneksi database Anda
 require_once('../../function.php');
 
-// Pengecekan koneksi database
-if ($koneksi->connect_error) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Koneksi database gagal: ' . $koneksi->connect_error]);
-    exit;
-}
+include '../../../vendor/autoload.php';
 
 // Menggunakan tanggal hari ini untuk perbandingan. Member dianggap expired jika tanggal expirednya lebih kecil dari tanggal hari ini
 $current_date = date('Y-m-d');
@@ -139,9 +134,10 @@ while($mr = mysqli_fetch_assoc($empRecords)){
       "tier" => $formatted_tier,
       "start" => $start_date,
       "expired" => $expired_date,
-      "status" => $formatted_status, // Menggunakan status yang sudah diformat
+      "status" => $formatted_status,
       "pembayaran" => $mr['pembayaran'],
       "semua_point" => $mr['semua_point'],
+      "qr_code" => '<img src="../../../generate_qr.php?id=' . urlencode($mr['memberid']) . '" alt="QR Code" style="width: 20px; height: 20px;">'
     );
 }
 

@@ -1,5 +1,9 @@
 <?php
 include '../function.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 
 <?php include 'ui/head.php'; ?>
@@ -76,6 +80,7 @@ include '../function.php';
                       <th>STATUS</th>
                       <th>PEMBAYARAN</th>
                       <th>POINT</th>
+                      <th>QR CODE</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -202,8 +207,8 @@ include '../function.php';
           { "data": "status" },
           { "data": "pembayaran" },
           { "data": "semua_point" },
+          { "data": "qr_code"}
         ],
-        // "order": [[ 3, "asc" ]]
       });
       
       // Menambahkan kelas 'selected' saat baris diklik
