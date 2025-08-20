@@ -86,7 +86,7 @@ $local_qr_path = '../../images/qrcodes/' . $member_id . '.png';
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            background: #ffffff;
+            background-color: #ffffff;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -94,6 +94,11 @@ $local_qr_path = '../../images/qrcodes/' . $member_id . '.png';
             padding: 15px;
             box-sizing: border-box;
             position: relative;
+            /* Tambahkan background image */
+            background-image: url('../../images/2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .bg-pattern {
             position: absolute;
@@ -101,13 +106,11 @@ $local_qr_path = '../../images/qrcodes/' . $member_id . '.png';
             left: 0;
             width: 100%;
             height: 100%;
-            /* Properti yang mungkin tidak didukung html2canvas,
-               tetapi sering berfungsi dengan baik. Jika tidak,
-               ganti dengan gambar statis. */
-            background-image: radial-gradient(circle, #f0f0f0 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(240, 240, 240, 0.3) 1px, transparent 1px);
             background-size: 8px 8px;
-            opacity: 0.4;
+            opacity: 1;
             pointer-events: none;
+            z-index: 1;
         }
         .card-header {
             display: flex;

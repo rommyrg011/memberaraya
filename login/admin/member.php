@@ -80,7 +80,7 @@ error_reporting(E_ALL);
                       <th>STATUS</th>
                       <th>PEMBAYARAN</th>
                       <th>POINT</th>
-                      <th>QR CODE</th>
+                      <th>BARCODE</th>
                     </tr>
                   </thead>
                   <tbody>
