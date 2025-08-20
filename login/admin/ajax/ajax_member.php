@@ -7,9 +7,7 @@ error_reporting(E_ALL);
 
 // Sertakan file koneksi database Anda
 require_once('../../function.php');
-
-include '../../../vendor/autoload.php';
-
+ 
 // Menggunakan tanggal hari ini untuk perbandingan. Member dianggap expired jika tanggal expirednya lebih kecil dari tanggal hari ini
 $current_date = date('Y-m-d');
 $sql_update_expired = "UPDATE member SET status = 'Tidak Aktif' WHERE expired < ? AND status = 'Aktif'";
@@ -33,7 +31,7 @@ $searchValue = isset($_POST['search']['value']) ? mysqli_real_escape_string($kon
 // Daftar nama kolom yang valid dan sesuai dengan database
 $columnNames = [
     'id_member', 'cabang', 'operator', 'memberid', 'nama', 'gender', 'wa', 'tier',
-    'start', 'expired', 'status','pembayaran', 'semua_point'
+    'start', 'expired', 'status','pembayaran', 'semua_point', 'qr_code'
 ];
 
 $columnName = 'id_member';
@@ -137,7 +135,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
       "status" => $formatted_status,
       "pembayaran" => $mr['pembayaran'],
       "semua_point" => $mr['semua_point'],
-      "qr_code" => '<img src="../../../generate_qr.php?id=' . urlencode($mr['memberid']) . '" alt="QR Code" style="width: 20px; height: 20px;">'
+      "qr_code" => '<img alt="Barcode" src="ajax/barcode.php?codetype=Code128&size=15&text='. $mr['memberid'] .'&print=false" />' 
     );
 }
 
