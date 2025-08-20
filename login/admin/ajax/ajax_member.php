@@ -136,7 +136,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
 
     // Menggabungkan gambar QR code dan tautan detail
     $qr_code_with_link = '<a href="' . $detail_url . '" title="Lihat Detail Member: ' . htmlspecialchars($mr['nama']) . '">';
-    $qr_code_with_link .= '<img src="' . $qr_code_url . '" alt="QR Code" style="width: 50px; height: 50px;">';
+    $qr_code_with_link .= '<img src="' . $qr_code_url . '" alt="Barcode Anda" style="width: 30px; height: 30px;">';
     $qr_code_with_link .= '</a>';
 
     $data[] = array(

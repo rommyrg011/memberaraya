@@ -22,6 +22,7 @@ if (!$member_data) {
 
 $member_name = $member_data['nama'];
 $member_tier = $member_data['tier'];
+$status = $member_data['status'];
 $expired_date = new DateTime($member_data['expired']);
 $formatted_expired_date = $expired_date->format('d F Y');
 
@@ -30,6 +31,7 @@ $qr_content = json_encode([
     'ID' => $memberid,
     'Nama' => $member_name,
     'Tier' => $member_tier,
+    'Status' => $status,
     'Expired' => $formatted_expired_date
 ]);
 
