@@ -6,7 +6,7 @@ session_start();
 // Mencegah akses langsung jika data POST tidak ada
 if (!isset($_POST['username']) || !isset($_POST['password'])) {
     header("location:./?pesan=gagal");
-    exit();
+   
 }
 
 // Tangkap data yang dikirim dari form login

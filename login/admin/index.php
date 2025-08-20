@@ -6,7 +6,7 @@ session_start();
 // Jika belum, alihkan ke halaman login
 if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
     header("location:../");
-    exit();
+    
 }
 
 // Cek level user
