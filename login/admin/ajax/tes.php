@@ -1,13 +1,4 @@
 <?php 
-// session_start() harus diletakkan di baris paling atas
-session_start();
-
-// Cek apakah user sudah login
-// Jika belum, alihkan ke halaman login
-if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
-    header("location:../");
-    exit();
-}
 
 // Cek level user
 // Alihkan jika level tidak sesuai
@@ -19,15 +10,15 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
 // Jika user adalah admin, biarkan dia di halaman ini
 ?>
 
-<?php include 'ui/head.php'; ?>
+<?php include '../ui/head.php'; ?>
 
   <body id="page-top">
     <div id="wrapper">
-      <?php include 'ui/sidebar.php'; ?>
+      <?php include '../ui/sidebar.php'; ?>
 
       <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
-          <?php include 'ui/topbar.php'; ?>
+          <?php include '../ui/topbar.php'; ?>
 
           <div class="container-fluid">
             <div
@@ -180,8 +171,8 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
 
     <!-- untuk tampilan mobile -->
 
-    <?php include 'ui/mobile.php'; ?>
+    <?php include '../ui/mobile.php'; ?>
     
     <!-- akhir tampilan mobile -->
 
-    <?php include 'ui/js.php'; ?>
+    <?php include '../ui/js.php'; ?>
