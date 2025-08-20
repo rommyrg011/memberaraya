@@ -43,7 +43,7 @@ error_reporting(E_ALL);
                   <i class="fas fa-trash"></i> Delete
                 </button>
                 <button id="extendRow" class="btn btn-info btn-sm btn-mobile btn-xs" disabled>
-                  <i class="fas fa-redo"></i> extend
+                  <i class="fas fa-redo"></i> Extend
                 </button>
                 <button id="printRow" class="btn btn-primary btn-sm btn-mobile btn-xs" disabled>
                   <i class="fas fa-address-card"></i> Print
@@ -175,7 +175,7 @@ error_reporting(E_ALL);
       </div>
     </div>
   </div>
-
+  
   <?php include 'ui/mobile.php'; ?>
   
   <?php include 'ui/js.php'; ?>
@@ -347,7 +347,8 @@ error_reporting(E_ALL);
           var rowData = selectedRow.data();
           var memberId = rowData.memberid;
 
-          window.open("cetak_member.php?id=" + memberId, '_blank');
+          // Buka jendela baru dengan URL yang mengarah ke kartu member
+          window.open("ajax/unduh-kartu.php?memberid=" + memberId, 'width=900,height=600');
         } else {
           alert("Pilih satu baris untuk dicetak.");
         }

@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 // Sertakan file koneksi database Anda
 require_once('../../function.php');
- 
+
 // Menggunakan tanggal hari ini untuk perbandingan. Member dianggap expired jika tanggal expirednya lebih kecil dari tanggal hari ini
 $current_date = date('Y-m-d');
 $sql_update_expired = "UPDATE member SET status = 'Tidak Aktif' WHERE expired < ? AND status = 'Aktif'";
@@ -40,7 +40,6 @@ if ($columnIndex > 0 && $columnIndex < count($columnNames) && isset($columnNames
 }
 
 ## Query untuk total record (tanpa filter)
-// Tambahkan klausa WHERE untuk hanya menghitung member yang aktif
 $sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM member WHERE status = 'Aktif'");
 if (!$sel) {
     http_response_code(500);
@@ -51,7 +50,6 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecords = $records['allcount'];
 
 ## Query untuk total record (dengan filter)
-// Tambahkan klausa WHERE 'status = 'Aktif'' pada bagian awal kueri
 $searchQuery = " AND status = 'Aktif' ";
 if ($searchValue != '') {
    $searchQuery .= " AND (cabang LIKE '%".$searchValue."%' OR
@@ -74,7 +72,6 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Ambil data
-// Tambahkan klausa WHERE 'status = 'Aktif'' pada bagian awal kueri
 $query = "SELECT * FROM member WHERE status = 'Aktif' ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT ".$row.",".$rowperpage;
 $empRecords = mysqli_query($koneksi, $query);
 
@@ -107,7 +104,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
             $class = 'alert-info';
             break;
         default:
-            $class = ''; // Warna default jika tier tidak dikenal
+            $class = '';
             break;
     }
 
@@ -120,31 +117,52 @@ while($mr = mysqli_fetch_assoc($empRecords)){
     // Logika untuk status
     $status_class = ($mr['status'] == 'Aktif') ? 'alert-info' : 'alert-danger';
     $formatted_status = '<span class="alert ' . $status_class . '" style="padding: .25rem .5rem; font-size: 75%; border-radius: 20px;">' . htmlspecialchars($mr['status']) . '</span>';
+    
+    // Siapkan data untuk QR code
+    $qr_data_array = [
+        'Member ID' => $mr['memberid'],
+        'Nama' => $mr['nama'],
+        'Tier' => $mr['tier'],
+        'Mulai' => $start_date,
+        'Kadaluarsa' => $expired_date
+    ];
+    
+    $qr_content = json_encode($qr_data_array);
+    $qr_code_url = 'ajax/generate_qrcode.php?content=' . urlencode($qr_content);
+
+    // Membuat URL untuk halaman detail
+    // Ganti 'halaman_detail_anda.php' dengan nama file halaman detail yang sebenarnya
+    $detail_url = 'ajax/halaman_detail_anda.php?memberid=' . urlencode($mr['memberid']);
+
+    // Menggabungkan gambar QR code dan tautan detail
+    $qr_code_with_link = '<a href="' . $detail_url . '" title="Lihat Detail Member: ' . htmlspecialchars($mr['nama']) . '">';
+    $qr_code_with_link .= '<img src="' . $qr_code_url . '" alt="QR Code" style="width: 50px; height: 50px;">';
+    $qr_code_with_link .= '</a>';
 
     $data[] = array(
-      "no" => $no++,
-      "cabang" => $mr['cabang'],
-      "operator" => $mr['operator'],
-      "memberid" => $mr['memberid'],
-      "nama" => $mr['nama'],
-      "gender" => $mr['gender'],
-      "wa" => $mr['wa'],
-      "tier" => $formatted_tier,
-      "start" => $start_date,
-      "expired" => $expired_date,
-      "status" => $formatted_status,
-      "pembayaran" => $mr['pembayaran'],
-      "semua_point" => $mr['semua_point'],
-      "qr_code" => '<img alt="Barcode" src="ajax/barcode.php?codetype=Code128&size=15&text='. $mr['memberid'] .'&print=false" />' 
+        "no" => $no++,
+        "cabang" => $mr['cabang'],
+        "operator" => $mr['operator'],
+        "memberid" => $mr['memberid'],
+        "nama" => $mr['nama'],
+        "gender" => $mr['gender'],
+        "wa" => $mr['wa'],
+        "tier" => $formatted_tier,
+        "start" => $start_date,
+        "expired" => $expired_date,
+        "status" => $formatted_status,
+        "pembayaran" => $mr['pembayaran'],
+        "semua_point" => $mr['semua_point'],
+        "qr_code" => $qr_code_with_link // Kolom sekarang berisi gambar yang dapat diklik
     );
 }
 
 ## Respons
 $response = array(
-  "draw" => $draw,
-  "iTotalRecords" => $totalRecords,
-  "iTotalDisplayRecords" => $totalRecordwithFilter,
-  "aaData" => $data
+    "draw" => $draw,
+    "iTotalRecords" => $totalRecords,
+    "iTotalDisplayRecords" => $totalRecordwithFilter,
+    "aaData" => $data
 );
 
 header('Content-type: application/json');
