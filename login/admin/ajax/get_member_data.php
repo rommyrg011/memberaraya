@@ -48,7 +48,7 @@ if (isset($_GET['memberid'])) {
         $response['data'] = $formatted_data;
     } else {
         $response['status'] = 'error';
-        $response['message'] = 'Data member tidak ditemukan.';
+        $response['message'] = '<span style="color: red; font-weight: bold;">Data member tidak ditemukan.</span>';
     }
 } else {
     $response['status'] = 'error';

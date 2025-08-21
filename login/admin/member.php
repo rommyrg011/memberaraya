@@ -199,7 +199,7 @@ error_reporting(E_ALL);
             </div>
             
             <div class="modal fade" id="viewMemberModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="viewModalLabel">Data Member</h5>
@@ -473,7 +473,7 @@ error_reporting(E_ALL);
                     if (memberId) {
                         fetchMemberData(memberId);
                     } else {
-                         $('#alertMessage').html('<div class="alert alert-danger">Error: Data barcode tidak valid. Silakan coba lagi.</div>');
+                    $('#alertMessage').html('<div class="alert alert-danger">Error: Data barcode tidak valid. Silakan coba lagi.</div>');
                     }
                 }
                 if (err && !(err instanceof ZXing.NotFoundException)) {
@@ -524,19 +524,19 @@ error_reporting(E_ALL);
                         // Menampilkan modal yang benar
                         $('#viewMemberModal').modal('show');
                         
-                        $('#alertMessage').html('<div class="alert alert-success">Data member berhasil dimuat.</div>');
+                        $('#alertMessage').html('<div class="alert alert-success">Data member berhasil di temukan.</div>');
                         
                         setTimeout(function() {
                             $('#alertMessage').empty();
                         }, 6000);
                         
                     } else {
-                        $('#alertMessage').html('<div class="alert alert-danger">' + data.message + '</div>');
+                        $('#alertMessage').html('<div class="alert alert-success">' + data.message + '</div>');
                         
                     }
                 },
                 error: function(xhr, status, error) {
-                    $('#alertMessage').html('<div class="alert alert-danger">Error: ' + xhr.responseText + ' (Status: ' + status + ', Error: ' + error + ')</div>');
+                    $('#alertMessage').html('<div class="alert alert-success">' + xhr.responseText + ' (Status: ' + status + ', Error: ' + error + ')</div>');
                 }
             });
         }

@@ -33,7 +33,7 @@ if (isset($_GET['memberid'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Anggota: <?= htmlspecialchars($member_data['nama']) ?></title>
+    <title>Barcode <?= htmlspecialchars($member_data['nama']) ?></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,7 +44,7 @@ if (isset($_GET['memberid'])) {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 90vh;
         }
         .container {
             background-color: #fff;
@@ -56,16 +56,16 @@ if (isset($_GET['memberid'])) {
             text-align: center;
         }
         .header {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            
+            padding-bottom: 10px;
+            margin-bottom: 10px;
         }
         h1 {
             color: #1a73e8;
             margin-top: 0;
         }
         .qr-code-container {
-            margin: 30px 0;
+            margin: 5px 0;
         }
         .qr-code-container img {
             width: 180px;
@@ -74,28 +74,7 @@ if (isset($_GET['memberid'])) {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            text-align: left;
-        }
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .info-item:last-child {
-            border-bottom: none;
-        }
-        .info-label {
-            font-weight: bold;
-            color: #555;
-        }
-        .info-value {
-            color: #777;
-        }
+        
         .back-button {
             margin-top: 30px;
             display: inline-block;
@@ -114,39 +93,13 @@ if (isset($_GET['memberid'])) {
 <body>
     <div class="container">
         <div class="header">
-            <h1>Detail Member</h1>
+            <h1><?=$member_data['nama']; ?></h1>
         </div>
         
         <div class="qr-code-container">
             <img src="<?= htmlspecialchars($qr_code_url) ?>" alt="Barcode Member">
         </div>
-
-        <div class="info-grid">
-            <div class="info-item">
-                <span class="info-label">ID Member:</span>
-                <span class="info-value"><?= htmlspecialchars($member_data['memberid']) ?></span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Nama:</span>
-                <span class="info-value"><?= htmlspecialchars($member_data['nama']) ?></span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Tier:</span>
-                <span class="info-value"><?= htmlspecialchars($member_data['tier']) ?></span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Tanggal Mulai:</span>
-                <span class="info-value"><?= htmlspecialchars($start_date) ?></span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Tanggal Kadaluarsa:</span>
-                <span class="info-value"><?= htmlspecialchars($expired_date) ?></span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Status:</span>
-                <span class="info-value"><?= htmlspecialchars($member_data['status']) ?></span>
-            </div>
-            </div>
+        <center><h2><?= $member_data['memberid']; ?></h2></center>
 
         <a href="javascript:history.back()" class="back-button">Kembali</a>
     </div>

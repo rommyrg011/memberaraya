@@ -190,7 +190,7 @@ $qr_code_url = 'generate_qrcode.php?content=' . urlencode($qr_content);
             margin-bottom: 2px;
         }
         .detail-label {
-            font-weight: 600;
+            font-weight: 800;
             color: #444;
         }
         .detail-value {
@@ -216,9 +216,9 @@ $qr_code_url = 'generate_qrcode.php?content=' . urlencode($qr_content);
         }
         .card-footer-id {
             font-family: 'Roboto', sans-serif;
-            font-size: 1.1em;
-            font-weight: 700;
-            color: #5D238C;
+            font-size: 13px;
+            font-weight: 600;
+            color: black;
             text-align: right;
             margin-top: 5px;
         }
@@ -236,6 +236,10 @@ $qr_code_url = 'generate_qrcode.php?content=' . urlencode($qr_content);
         .download-button:hover {
             background-color: #4a1c6e;
         }
+
+        .araya-text, .gamestation-text {
+    font-size: 12px; /* Ubah angka 14 sesuai kebutuhan */
+  }
     </style>
 </head>
 <body>
@@ -246,8 +250,10 @@ $qr_code_url = 'generate_qrcode.php?content=' . urlencode($qr_content);
                 <div class="logo-section">
                     <img src="../../images/logoaraya.png" style="width: 25px; margin-right: 5px;">
                     <div>
-                        ARAYA<br>GAMESTATION
-                    </div>
+  <span class="araya-text">ARAYA</span>
+  
+  <span class="gamestation-text">GAMESTATION</span>
+</div>
                 </div>
                 <div class="tier-badge" style="background-color: <?php echo $tier_color; ?>"><?php echo $member_tier; ?></div>
             </div>
