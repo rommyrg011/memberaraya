@@ -114,17 +114,16 @@ if (isset($_GET['memberid'])) {
 <body>
     <div class="container">
         <div class="header">
-            <h1>Detail Anggota</h1>
-            <p>Informasi lengkap mengenai anggota.</p>
+            <h1>Detail Member</h1>
         </div>
         
         <div class="qr-code-container">
-            <img src="<?= htmlspecialchars($qr_code_url) ?>" alt="QR Code Anggota">
+            <img src="<?= htmlspecialchars($qr_code_url) ?>" alt="Barcode Member">
         </div>
 
         <div class="info-grid">
             <div class="info-item">
-                <span class="info-label">ID Anggota:</span>
+                <span class="info-label">ID Member:</span>
                 <span class="info-value"><?= htmlspecialchars($member_data['memberid']) ?></span>
             </div>
             <div class="info-item">
@@ -156,10 +155,10 @@ if (isset($_GET['memberid'])) {
 <?php
     } else {
         // Data tidak ditemukan
-        echo "<h1>Anggota tidak ditemukan.</h1>";
+        echo "<h1>Member tidak ditemukan.</h1>";
     }
 } else {
     // Tidak ada memberid di URL
-    echo "<h1>ID Anggota tidak diberikan.</h1>";
+    echo "<h1>ID Member tidak diberikan.</h1>";
 }
 ?>

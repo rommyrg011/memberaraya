@@ -27,7 +27,7 @@ include '../function.php';
           
           <div class="card shadow mb-3">
             <div class="card-header py-2">
-              <h4 class="m-0 font-weight-bold text-primary text-center">Member <br> Araya Gamestation</h4>
+              <h4 class="m-0 font-weight-bold text-primary text-center">History Member</h4>
               <br>
               <?php
               if(isset($_SESSION['notif'])){
@@ -59,6 +59,7 @@ include '../function.php';
                       <th>STATUS</th>
                       <th>PEMBAYARAN</th>
                       <th>POINT</th>
+                      <th>Barcode</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -108,6 +109,7 @@ include '../function.php';
           { "data": "status" },
           { "data": "pembayaran" },
           { "data": "semua_point" },
+          { "data": "qr_code" },
         ],
         // "order": [[ 3, "asc" ]]
       });

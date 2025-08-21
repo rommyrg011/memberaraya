@@ -38,7 +38,7 @@ $searchValue = isset($_POST['search']['value']) ? mysqli_real_escape_string($kon
 // Daftar nama kolom yang valid dan sesuai dengan database
 $columnNames = [
     'id_member', 'cabang', 'operator', 'memberid', 'nama', 'gender', 'wa', 'tier',
-    'start', 'expired', 'status','pembayaran', 'semua_point'
+    'start', 'expired', 'status','pembayaran', 'semua_point', 'qr_code'
 ];
 
 $columnName = 'id_member';
@@ -128,6 +128,27 @@ while($mr = mysqli_fetch_assoc($empRecords)){
     $status_class = ($mr['status'] == 'Aktif') ? 'alert-info' : 'alert-danger';
     $formatted_status = '<span class="alert ' . $status_class . '" style="padding: .25rem .5rem; font-size: 75%; border-radius: 20px;">' . htmlspecialchars($mr['status']) . '</span>';
 
+     // Siapkan data untuk QR code
+    $qr_data_array = [
+        'Member ID' => $mr['memberid'],
+        'Nama' => $mr['nama'],
+        'Tier' => $mr['tier'],
+        'Mulai' => $start_date,
+        'Kadaluarsa' => $expired_date
+    ];
+    
+    $qr_content = json_encode($qr_data_array);
+    $qr_code_url = 'ajax/generate_qrcode.php?content=' . urlencode($qr_content);
+
+    // Membuat URL untuk halaman detail
+    // Ganti 'halaman_detail_anda.php' dengan nama file halaman detail yang sebenarnya
+    $detail_url = 'ajax/halaman_detail_anda.php?memberid=' . urlencode($mr['memberid']);
+
+    // Menggabungkan gambar QR code dan tautan detail
+    $qr_code_with_link = '<a href="' . $detail_url . '" title="Lihat Detail Member: ' . htmlspecialchars($mr['nama']) . '">';
+    $qr_code_with_link .= '<img src="' . $qr_code_url . '" alt="Barcode Anda" style="width: 30px; height: 30px;">';
+    $qr_code_with_link .= '</a>';
+
     $data[] = array(
       "no" => $no++,
       "cabang" => $mr['cabang'],
@@ -142,6 +163,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
       "status" => $formatted_status, // Menggunakan status yang sudah diformat
       "pembayaran" => $mr['pembayaran'],
       "semua_point" => $mr['semua_point'],
+      "qr_code" => $qr_code_with_link
     );
 }
 
