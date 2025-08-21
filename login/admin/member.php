@@ -177,6 +177,44 @@ error_reporting(E_ALL);
                 </div>
             </div>
 
+            <div class="modal fade" id="viewMemberModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewModalLabel">Data Member</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>ID Member</label>
+                                <input type="text" class="form-control" id="viewMemberId" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" id="viewNama" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Tier</label>
+                                <input type="text" class="form-control" id="viewTier" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Mulai</label>
+                                <input type="text" class="form-control" id="viewStart" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Kadaluarsa</label>
+                                <input type="text" class="form-control" id="viewExpired" readonly>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="scanModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
@@ -377,7 +415,7 @@ error_reporting(E_ALL);
                 var memberId = rowData.memberid;
 
                 // Buka jendela baru dengan URL yang mengarah ke kartu member
-                window.open("ajax/unduh-kartu.php?memberid=" + memberId, 'width=900,height=600');
+                window.open("ajax/unduh-kartu.php?memberid=" + memberId, '_blank');
             } else {
                 alert("Pilih satu baris untuk dicetak.");
             }
@@ -417,8 +455,21 @@ error_reporting(E_ALL);
                     stopScanner();
                     $('#scanModal').modal('hide');
                     
-                    const memberId = result.text;
-                    fetchMemberData(memberId);
+                    let scannedData = null;
+                    try {
+                        scannedData = JSON.parse(result.text);
+                    } catch (e) {
+                        // Jika bukan JSON, kita bisa asumsikan itu hanya ID member
+                        // Untuk kasus ini, kita tidak melakukan apa-apa karena kita hanya butuh JSON
+                        console.log('Data yang discan bukan JSON.');
+                    }
+                    
+                    if (scannedData) {
+                        displayScannedDataInModal(scannedData);
+                    } else {
+                         // Tampilkan pesan error jika data tidak valid atau tidak dapat diproses
+                        $('#alertMessage').html('<div class="alert alert-danger">Error: Data barcode tidak valid. Silakan coba lagi.</div>');
+                    }
                 }
                 if (err && !(err instanceof ZXing.NotFoundException)) {
                     if (err.name === 'NotAllowedError') {
@@ -431,9 +482,8 @@ error_reporting(E_ALL);
                     }
                 }
             }).then(result => {
-                // Simpan stream video untuk dimatikan nanti
                 if (result && result.getVideoTracks) {
-                    videoStream = result;
+                    videoStream = result.getVideoTracks()[0];
                 }
             }).catch(err => {
                 console.error(err);
@@ -444,17 +494,25 @@ error_reporting(E_ALL);
             if (codeReader) {
                 codeReader.reset();
             }
-            // PERBAIKAN: Hentikan stream video secara manual
             if (videoStream) {
-                const tracks = videoStream.getVideoTracks();
-                tracks.forEach(track => track.stop());
+                videoStream.stop(); // Hentikan trek video
                 videoStream = null;
             }
         }
 
+        // FUNGSI BARU UNTUK MENAMPILKAN DATA DI MODAL
+        function displayScannedDataInModal(data) {
+            $('#viewMemberId').val(data["Member ID"]);
+            $('#viewNama').val(data.Nama);
+            $('#viewTier').val(data.Tier);
+            $('#viewStart').val(data.Mulai);
+            $('#viewExpired').val(data.Kadaluarsa);
+            $('#viewMemberModal').modal('show');
+        }
+
         function fetchMemberData(memberId) {
             $.ajax({
-                url: "ajax/get_member_data.php",
+                url: "ajax/get_member_data.php", // Path ke file PHP yang baru
                 method: "GET",
                 data: { memberid: memberId },
                 dataType: "json",

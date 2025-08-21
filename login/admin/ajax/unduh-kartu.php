@@ -2,9 +2,6 @@
 // Sertakan file koneksi database
 require_once('../../function.php');
 
-// Panggil skrip untuk menghasilkan dan menyimpan QR Code
-require_once('generate_qr.php');
-
 // Ambil memberid dari URL
 $memberid = isset($_GET['memberid']) ? $_GET['memberid'] : '';
 
@@ -14,7 +11,8 @@ if (empty($memberid)) {
 }
 
 // Gunakan prepared statement untuk mengambil data anggota
-$sql = "SELECT nama, tier, status, expired, memberid FROM member WHERE memberid = ?";
+// PERBAIKAN: Tambahkan kembali kolom 'start' ke dalam query SQL
+$sql = "SELECT nama, tier, status, expired, memberid, start FROM member WHERE memberid = ?";
 $stmt = $koneksi->prepare($sql);
 $stmt->bind_param("s", $memberid);
 $stmt->execute();
@@ -31,9 +29,11 @@ $member_tier = htmlspecialchars($member_data['tier']);
 $member_status = htmlspecialchars($member_data['status']);
 $member_id = htmlspecialchars($member_data['memberid']);
 
-$expired_date = new DateTime($member_data['expired']);
-$formatted_expired_date = $expired_date->format('d F Y');
+$start_date = isset($member_data['start']) && $member_data['start'] !== '0000-00-00' ? date('d-m-Y', strtotime($member_data['start'])) : '-';
+$expired_date = isset($member_data['expired']) && $member_data['expired'] !== '0000-00-00' ? date('d-m-Y', strtotime($member_data['expired'])) : '-';
+$formatted_expired_date = $expired_date;
 
+// Tentukan warna berdasarkan tier
 $tier_color = '';
 switch (strtolower($member_tier)) {
     case 'bronze':
@@ -50,8 +50,19 @@ switch (strtolower($member_tier)) {
         break;
 }
 
-// Tentukan path gambar QR Code lokal
-$local_qr_path = '../../images/qrcodes/' . $member_id . '.png';
+// Buat data JSON untuk QR Code
+$qr_data_array = [
+    'Member ID' => $member_data['memberid'],
+    'Nama' => $member_data['nama'],
+    'Tier' => $member_data['tier'],
+    'Mulai' => $start_date, // Gunakan variabel yang sudah diformat
+    'Kadaluarsa' => $expired_date // Gunakan variabel yang sudah diformat
+];
+
+$qr_content = json_encode($qr_data_array);
+
+// Ubah URL QR code agar dihasilkan secara dinamis
+$qr_code_url = 'generate_qrcode.php?content=' . urlencode($qr_content);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -255,7 +266,7 @@ $local_qr_path = '../../images/qrcodes/' . $member_id . '.png';
                     </div>
                 </div>
                 <div class="qr-code">
-                    <img id="qr-image" src="<?php echo $local_qr_path; ?>" alt="QR Code">
+                    <img id="qr-image" src="<?= htmlspecialchars($qr_code_url) ?>" alt="QR Code">
                 </div>
             </div>
             <div class="card-footer-id">
