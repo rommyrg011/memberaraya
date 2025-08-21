@@ -1,4 +1,5 @@
 <?php
+
 include '../function.php';
 
 ini_set('display_errors', 1);
@@ -177,8 +178,28 @@ error_reporting(E_ALL);
                 </div>
             </div>
 
-            <div class="modal fade" id="viewMemberModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+            <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="scanModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="scanModalLabel">Scan Barcode</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <video id="scannerVideo" width="100%" height="auto" playsinline></video>
+                            <div class="mt-2 text-muted" id="scannerMessage">Arahkan kamera ke barcode...</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="viewMemberModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="viewModalLabel">Data Member</h5>
@@ -207,29 +228,13 @@ error_reporting(E_ALL);
                                 <label>Kadaluarsa</label>
                                 <input type="text" class="form-control" id="viewExpired" readonly>
                             </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <input type="text" class="form-control" id="viewStatus" readonly>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Tutup</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="scanModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="scanModalLabel">Scan Barcode</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <video id="scannerVideo" width="100%" height="auto" playsinline></video>
-                            <div class="mt-2 text-muted" id="scannerMessage">Arahkan kamera ke barcode...</div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Batal</button>
                         </div>
                     </div>
                 </div>
@@ -455,20 +460,20 @@ error_reporting(E_ALL);
                     stopScanner();
                     $('#scanModal').modal('hide');
                     
-                    let scannedData = null;
+                    let memberId = null;
                     try {
-                        scannedData = JSON.parse(result.text);
+                        const scannedData = JSON.parse(result.text);
+                        if (scannedData["Member ID"]) {
+                            memberId = scannedData["Member ID"];
+                        }
                     } catch (e) {
-                        // Jika bukan JSON, kita bisa asumsikan itu hanya ID member
-                        // Untuk kasus ini, kita tidak melakukan apa-apa karena kita hanya butuh JSON
-                        console.log('Data yang discan bukan JSON.');
+                        memberId = result.text;
                     }
                     
-                    if (scannedData) {
-                        displayScannedDataInModal(scannedData);
+                    if (memberId) {
+                        fetchMemberData(memberId);
                     } else {
-                         // Tampilkan pesan error jika data tidak valid atau tidak dapat diproses
-                        $('#alertMessage').html('<div class="alert alert-danger">Error: Data barcode tidak valid. Silakan coba lagi.</div>');
+                         $('#alertMessage').html('<div class="alert alert-danger">Error: Data barcode tidak valid. Silakan coba lagi.</div>');
                     }
                 }
                 if (err && !(err instanceof ZXing.NotFoundException)) {
@@ -495,33 +500,29 @@ error_reporting(E_ALL);
                 codeReader.reset();
             }
             if (videoStream) {
-                videoStream.stop(); // Hentikan trek video
+                videoStream.stop();
                 videoStream = null;
             }
         }
 
-        // FUNGSI BARU UNTUK MENAMPILKAN DATA DI MODAL
-        function displayScannedDataInModal(data) {
-            $('#viewMemberId').val(data["Member ID"]);
-            $('#viewNama').val(data.Nama);
-            $('#viewTier').val(data.Tier);
-            $('#viewStart').val(data.Mulai);
-            $('#viewExpired').val(data.Kadaluarsa);
-            $('#viewMemberModal').modal('show');
-        }
-
         function fetchMemberData(memberId) {
             $.ajax({
-                url: "ajax/get_member_data.php", // Path ke file PHP yang baru
+                url: "ajax/get_member_data.php",
                 method: "GET",
                 data: { memberid: memberId },
                 dataType: "json",
                 success: function(data) {
                     if (data.status === 'success') {
-                        $('#editMemberId').val(data.data.memberid);
-                        $('#editNama').val(data.data.nama);
-                        $('#editWa').val(data.data.wa);
-                        $('#editMemberModal').modal('show');
+                        // Mengisi inputan di modal viewMemberModal
+                        $('#viewMemberId').val(data.data.memberid);
+                        $('#viewNama').val(data.data.nama);
+                        $('#viewTier').val(data.data.tier);
+                        $('#viewStart').val(data.data.start);
+                        $('#viewExpired').val(data.data.expired);
+                        $('#viewStatus').val(data.data.status); // Menambahkan status
+
+                        // Menampilkan modal yang benar
+                        $('#viewMemberModal').modal('show');
                         
                         $('#alertMessage').html('<div class="alert alert-success">Data member berhasil dimuat.</div>');
                         
@@ -530,7 +531,8 @@ error_reporting(E_ALL);
                         }, 6000);
                         
                     } else {
-                        $('#alertMessage').html('<div class="alert alert-danger">Error: ' + data.message + '</div>');
+                        $('#alertMessage').html('<div class="alert alert-danger">' + data.message + '</div>');
+                        
                     }
                 },
                 error: function(xhr, status, error) {
