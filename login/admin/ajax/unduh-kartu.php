@@ -43,7 +43,7 @@ switch (strtolower($member_tier)) {
         $tier_color = '#868686ff';
         break;
     case 'gold':
-        $tier_color = '#FFD700';
+        $tier_color = '#d8c13cff';
         break;
     default:
         $tier_color = '#fff';
