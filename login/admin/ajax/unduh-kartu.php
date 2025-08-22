@@ -106,7 +106,7 @@ $qr_code_url = 'generate_qrcode.php?content=' . urlencode($qr_content);
             box-sizing: border-box;
             position: relative;
             /* Tambahkan background image */
-            background-image: url('../../images/2.jpg');
+            background-image: url('../../images/depan.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
