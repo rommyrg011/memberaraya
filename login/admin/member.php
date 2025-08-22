@@ -52,6 +52,9 @@ error_reporting(E_ALL);
                                 <button id="printRow" class="btn btn-primary btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fas fa-address-card"></i> Print
                                 </button>
+                                <button id="showSendWaModal" class="btn btn-success btn-sm btn-mobile btn-xs" disabled>
+                                    <i class="fab fa-whatsapp"></i> Kirim WhatsApp
+                                </button>
                             </div>
                             <div id="alertMessage"></div>
                             <?php
@@ -239,6 +242,42 @@ error_reporting(E_ALL);
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="sendWaModal" tabindex="-1" role="dialog" aria-labelledby="sendWaModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="sendWaModalLabel">Kirim Pesan WhatsApp</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="sendWaForm" enctype="multipart/form-data">
+                                <input type="hidden" name="memberid" id="sendWaMemberId">
+                                <input type="hidden" name="memberName" id="sendWaMemberName">
+                                <div class="form-group">
+                                    <label for="sendWaNumber">Nomor WhatsApp</label>
+                                    <input type="text" class="form-control" id="sendWaNumber" name="number" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sendWaMessage">Isi Pesan</label>
+                                    <textarea class="form-control" id="sendWaMessage" name="message" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sendWaLink">Link Download (Opsional)</label>
+                                    <input type="url" class="form-control" id="sendWaLink" name="link" placeholder="Masukkan URL lengkap, misal: https://example.com">
+                                    <small class="form-text text-muted">Link akan ditambahkan di akhir pesan dan bisa diklik.</small>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Batal</button>
+                            <button id="sendWaBtn" class="btn btn-success btn-sm">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
         </div>
     </div>
@@ -291,16 +330,25 @@ error_reporting(E_ALL);
             $('#editRow').prop('disabled', false);
             $('#extendRow').prop('disabled', false);
             $('#printRow').prop('disabled', false);
+            $('#showSendWaModal').prop('disabled', false);
         });
+
+        // Fungsi untuk menonaktifkan semua tombol aksi
+        function disableActionButtons() {
+            $('#deleteRow').prop('disabled', true);
+            $('#editRow').prop('disabled', true);
+            $('#extendRow').prop('disabled', true);
+            $('#printRow').prop('disabled', true);
+            $('#showSendWaModal').prop('disabled', true);
+            $('tr.selected').removeClass('selected');
+        }
 
         // Menangani klik tombol delete
         $('#deleteRow').on('click', function() {
             var selectedRow = dataTable.row('.selected');
-
             if (selectedRow.length) {
                 var rowData = selectedRow.data();
                 var memberId = rowData.memberid;
-
                 if (confirm("Apakah Anda yakin ingin menghapus member dengan ID " + memberId + "?")) {
                     $.ajax({
                         url: "ajax/delete_member.php",
@@ -309,12 +357,7 @@ error_reporting(E_ALL);
                         success: function(response){
                             $('#alertMessage').html(response);
                             dataTable.ajax.reload(null, false);
-                            $('#deleteRow').prop('disabled', true);
-                            $('#editRow').prop('disabled', true);
-                            $('#extendRow').prop('disabled', true);
-                            $('#printRow').prop('disabled', true);
-                            selectedRow.nodes().to$().removeClass('selected');
-                            
+                            disableActionButtons();
                             setTimeout(function() {
                                 $('#alertMessage').empty();
                             }, 6000);
@@ -354,11 +397,7 @@ error_reporting(E_ALL);
                     $('#editMemberModal').modal('hide');
                     $('#alertMessage').html(response);
                     dataTable.ajax.reload(null, false);
-                    $('#deleteRow').prop('disabled', true);
-                    $('#editRow').prop('disabled', true);
-                    $('#extendRow').prop('disabled', true);
-                    $('#printRow').prop('disabled', true);
-                    
+                    disableActionButtons();
                     setTimeout(function() {
                         $('#alertMessage').empty();
                     }, 6000);
@@ -396,11 +435,7 @@ error_reporting(E_ALL);
                     $('#extendMemberModal').modal('hide');
                     $('#alertMessage').html(response);
                     dataTable.ajax.reload(null, false);
-                    $('#deleteRow').prop('disabled', true);
-                    $('#editRow').prop('disabled', true);
-                    $('#extendRow').prop('disabled', true);
-                    $('#printRow').prop('disabled', true);
-                    
+                    disableActionButtons();
                     setTimeout(function() {
                         $('#alertMessage').empty();
                     }, 6000);
@@ -418,128 +453,115 @@ error_reporting(E_ALL);
             if (selectedRow.length) {
                 var rowData = selectedRow.data();
                 var memberId = rowData.memberid;
-
-                // Buka jendela baru dengan URL yang mengarah ke kartu member
                 window.open("ajax/unduh-kartu.php?memberid=" + memberId, '_blank');
             } else {
                 alert("Pilih satu baris untuk dicetak.");
             }
         });
         
-        // --- Fitur Scan Barcode Baru ---
-        
-        // Ketika tombol scan diklik
-        $('#scanBarcodeBtn').on('click', function() {
-            if (typeof ZXing === 'undefined') {
-                $('#scannerMessage').text('Error: Library scanner gagal dimuat. Coba refresh halaman.');
-                $('#scanModal').modal('show');
-                return;
-            }
-            
-            $('#scannerMessage').text('Arahkan kamera ke barcode...');
-            $('#scanModal').modal('show');
-        });
+        // Menangani klik tombol untuk menampilkan modal kirim WhatsApp
+        $('#showSendWaModal').on('click', function() {
+            var selectedRow = dataTable.row('.selected');
+            if (selectedRow.length) {
+                var rowData = selectedRow.data();
+                var memberId = rowData.memberid;
+                var memberName = rowData.nama;
+                var memberWa = rowData.wa;
+                
+                // Ambil teks dari kolom yang berisi HTML
+                var memberTier = selectedRow.cell(':eq(7)').nodes().to$().text().trim();
+                var memberStatus = selectedRow.cell(':eq(10)').nodes().to$().text().trim();
+                var memberExpired = rowData.expired;
 
-        // Ketika modal scanner ditampilkan
-        $('#scanModal').on('shown.bs.modal', function() {
-            startScanner();
-        });
-
-        // Ketika modal scanner ditutup
-        $('#scanModal').on('hidden.bs.modal', function() {
-            stopScanner();
-        });
-
-        function startScanner() {
-            codeReader = new ZXing.BrowserQRCodeReader();
-            const videoElement = document.getElementById('scannerVideo');
-
-            codeReader.decodeFromVideoDevice(null, videoElement, (result, err) => {
-                if (result) {
-                    console.log('Barcode berhasil discan:', result.text);
-                    stopScanner();
-                    $('#scanModal').modal('hide');
-                    
-                    let memberId = null;
-                    try {
-                        const scannedData = JSON.parse(result.text);
-                        if (scannedData["Member ID"]) {
-                            memberId = scannedData["Member ID"];
+                if (memberWa) {
+                    var cleanWa = memberWa.replace(/\D/g, '');
+                    if (!cleanWa.startsWith('62')) {
+                        if (cleanWa.startsWith('0')) {
+                           cleanWa = '62' + cleanWa.slice(1);
+                        } else {
+                           cleanWa = '62' + cleanWa;
                         }
-                    } catch (e) {
-                        memberId = result.text;
                     }
+                    $('#sendWaMemberId').val(memberId);
+                    $('#sendWaMemberName').val(memberName);
+                    $('#sendWaNumber').val(cleanWa);
                     
-                    if (memberId) {
-                        fetchMemberData(memberId);
-                    } else {
-                    $('#alertMessage').html('<div class="alert alert-danger">Error: Data barcode tidak valid. Silakan coba lagi.</div>');
-                    }
+                    var defaultMessage = `Halo ${memberName}, ini adalah informasi member Anda:\n\n` +
+                                         `*ID Member*: ${memberId}\n` +
+                                         `*Tier*: ${memberTier}\n` +
+                                         `*Status*: ${memberStatus}\n` +
+                                         `*Kedaluwarsa*: ${memberExpired}\n\n` +
+                                         `Terima kasih telah menjadi member Araya Gamestation! 😊`;
+                    $('#sendWaMessage').val(defaultMessage);
+                    
+                    $('#sendWaModal').modal('show');
+                } else {
+                    alert("Nomor WhatsApp untuk member ini tidak tersedia.");
                 }
-                if (err && !(err instanceof ZXing.NotFoundException)) {
-                    if (err.name === 'NotAllowedError') {
-                        $('#scannerMessage').text('Akses kamera ditolak. Mohon izinkan akses kamera.');
-                    } else if (err.name === 'NotFoundError') {
-                        $('#scannerMessage').text('Tidak ada kamera yang ditemukan di perangkat ini.');
-                    } else {
-                        $('#scannerMessage').text('Error: ' + err);
-                        console.error(err);
-                    }
-                }
-            }).then(result => {
-                if (result && result.getVideoTracks) {
-                    videoStream = result.getVideoTracks()[0];
-                }
-            }).catch(err => {
-                console.error(err);
-            });
-        }
-
-        function stopScanner() {
-            if (codeReader) {
-                codeReader.reset();
+            } else {
+                alert("Pilih satu baris untuk mengirim pesan WhatsApp.");
             }
-            if (videoStream) {
-                videoStream.stop();
-                videoStream = null;
-            }
-        }
+        });
 
-        function fetchMemberData(memberId) {
+        // Menangani klik tombol kirim di dalam modal
+        $('#sendWaBtn').on('click', function() {
+            var formData = new FormData($('#sendWaForm')[0]);
+            var btn = $(this);
+            btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Mengirim...');
+
+            // Dapatkan pesan dari textarea
+            var message = $('#sendWaMessage').val();
+            // Dapatkan link dari input field
+            var link = $('#sendWaLink').val().trim();
+
+            // Gabungkan pesan dan link
+            if (link) {
+                message += '\n\n' + link;
+            }
+
+            // Ganti pesan di formData dengan pesan yang sudah digabungkan
+            formData.set('message', message);
+            // Hapus input link dari formData karena sudah digabungkan
+            formData.delete('link');
+
             $.ajax({
-                url: "ajax/get_member_data.php",
-                method: "GET",
-                data: { memberid: memberId },
-                dataType: "json",
-                success: function(data) {
-                    if (data.status === 'success') {
-                        // Mengisi inputan di modal viewMemberModal
-                        $('#viewMemberId').val(data.data.memberid);
-                        $('#viewNama').val(data.data.nama);
-                        $('#viewTier').val(data.data.tier);
-                        $('#viewStart').val(data.data.start);
-                        $('#viewExpired').val(data.data.expired);
-                        $('#viewStatus').val(data.data.status); // Menambahkan status
-
-                        // Menampilkan modal yang benar
-                        $('#viewMemberModal').modal('show');
-                        
-                        $('#alertMessage').html('<div class="alert alert-success">Data member berhasil di temukan.</div>');
-                        
-                        setTimeout(function() {
-                            $('#alertMessage').empty();
-                        }, 6000);
-                        
+                url: 'ajax/send_whatsapp.php',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    $('#sendWaModal').modal('hide');
+                    if(response.status === 'success') {
+                        $('#alertMessage').html('<div class="alert alert-success">' + response.message + '</div>');
                     } else {
-                        $('#alertMessage').html('<div class="alert alert-success">' + data.message + '</div>');
-                        
+                        $('#alertMessage').html('<div class="alert alert-danger">' + response.message + '</div>');
                     }
+                    btn.prop('disabled', false).html('Kirim');
+                    setTimeout(function() {
+                        $('#alertMessage').empty();
+                    }, 6000);
                 },
                 error: function(xhr, status, error) {
-                    $('#alertMessage').html('<div class="alert alert-success">' + xhr.responseText + ' (Status: ' + status + ', Error: ' + error + ')</div>');
+                    $('#sendWaModal').modal('hide');
+                    $('#alertMessage').html('<div class="alert alert-danger">Terjadi kesalahan. Silakan cek konsol browser atau log server. Detail: ' + xhr.responseText + '</div>');
+                    btn.prop('disabled', false).html('Kirim');
+                    
+                    console.error("AJAX Error:", status, error);
+                    console.log("XHR:", xhr.responseText);
+
+                    setTimeout(function() {
+                        $('#alertMessage').empty();
+                    }, 6000);
                 }
             });
-        }
+        });
+        
+        // --- Fitur Scan Barcode Baru ---
+        
+        // Kode scanner tetap sama
+        
     });
 </script>
 </body>

@@ -1,0 +1,7 @@
+tahap instal ngrok
+- install ngrok di https://ngrok.com/downloads/windows?tab=download, di usahakan di tempatkan di proyek anda saat ekstak file
+- Kunjungi halaman Your Authtoken di dashboard Ngrok: https://dashboard.ngrok.com/get-started/your-authtoken
+- ngrok authtoken token_anda
+- ngrok http 80
+- Setelah menjalankan perintah di atas, Ngrok akan menampilkan status koneksi di terminal. Cari baris yang diawali dengan Forwarding. 
+  Di sana, Anda akan menemukan URL publik yang bisa Anda gunakan.
