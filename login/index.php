@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,18 +12,30 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <style>
-    html,
-    body {
-        background-image: url("images/1.png");
-        height: 100vh;
-        background-position: center;
-        background-repeat: no-repeat;
+    /* CSS untuk video latar belakang */
+    #video-background {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -100;
         background-size: cover;
-        background-color: rgba(0, 0, 0, 0.5);
-        background-blend-mode: darken;
-
     }
 
+    /* CSS untuk overlay hitam */
+    .video-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Warna hitam dengan transparansi */
+        z-index: -99;
+    }
+    
     h1 {
         font-family: Helvetica;
         color: white;
@@ -41,7 +52,6 @@
         font-family: Helvetica;
         color: white;
         font-weight: 500;
-
     }
 
     img {
@@ -58,21 +68,27 @@
     .btn-md:hover {
         color: white;
     }
+    
     a{
         text-decoration: none;
     }
 </style>
 
 <body>
+    <video autoplay muted loop id="video-background">
+        <source src="images/bg.mp4" type="video/mp4">
+        
+    </video>
+    <div class="video-overlay"></div>
+
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
                 <div class="container">
                     <div class="row justify-content-center mt-3">
-
                         <div class="col-lg-6">
                             <br>
-                           <center><img src="images/logoaraya.png"></center>
+                            <center><img src="images/logoaraya.png"></center>
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
                                     <h4 class="text-center font-weight-light my-4">SILAHKAN LOGIN</h4>
@@ -84,40 +100,36 @@
                                         if (isset($_GET['pesan'])) {
                                             if ($_GET['pesan'] == "gagal") {
                                                 echo "<div class='alert alert-danger alert-dismissible'>
-                                                    <center><i class='fa fa-hourglass fa-spin' style='color:red;'></i>  <strong>Maaf! Username dan Password tidak sesuai</strong></center>
-                                                    <meta http-equiv='refresh' content='3; url=./'/>
-                                                </div>";
+                                                     <center><i class='fa fa-hourglass fa-spin' style='color:red;'></i>  <strong>Maaf! Username dan Password tidak sesuai</strong></center>
+                                                     <meta http-equiv='refresh' content='3; url=./'/>
+                                                 </div>";
                                             }
                                         }
 
                                         //Jika berhasil Login admin
                                         if (isset($_GET['admin'])) {
                                             echo "
-                                            <div class='alert alert-info alert-dismissible'>
-                                                <center>
-                                                <i class='fa fa-refresh fa-spin'></i>
-                                                <strong>Login Sukses! Tunggu Sebentar...</strong>
-                                        
-                                                </center>
-                                                <meta http-equiv='refresh' content='3; url=admin/'/>
-                                            </div>";
+                                             <div class='alert alert-info alert-dismissible'>
+                                                 <center>
+                                                 <i class='fa fa-refresh fa-spin'></i>
+                                                 <strong>Login Sukses! Tunggu Sebentar...</strong>
+                                                 </center>
+                                                 <meta http-equiv='refresh' content='3; url=admin/'/>
+                                             </div>";
                                         }
 
-                                        //Jika berhasil Login admin
+                                        //Jika berhasil Login operator
                                         if (isset($_GET['operator'])) {
                                             echo "
-                                            <div class='alert alert-info alert-dismissible'>
-                                                <center>
-                                                <i class='fa fa-refresh fa-spin'></i>
-                                                <strong>Login Sukses! Tunggu Sebentar...</strong>
-                                        
-                                                </center>
-                                                <meta http-equiv='refresh' content='3; url=admin/'/>
-                                            </div>";
+                                             <div class='alert alert-info alert-dismissible'>
+                                                 <center>
+                                                 <i class='fa fa-refresh fa-spin'></i>
+                                                 <strong>Login Sukses! Tunggu Sebentar...</strong>
+                                                 </center>
+                                                 <meta http-equiv='refresh' content='3; url=admin/'/>
+                                             </div>";
                                         }
-
                                         ?>
-
                                         <div class="form-floating mb-3">
                                             <input class="form-control" name="username" type="text" placeholder="Username" required autocomplete="off" />
                                             <label>Username</label>
@@ -126,7 +138,6 @@
                                             <input class="form-control" name="password" type="password" id="myInput" placeholder="Password" required autocomplete="off" />
                                             <label>Password</label>
                                         </div>
-                                        <!-- perlihatkan kata sandi-->
                                         <input type="checkbox" onclick="myFunction()"> Perlihatkan Sandi
                                         <center>
                                             <br>
@@ -142,15 +153,12 @@
                                             </script>
                                             <div class="col-md-12">
                                                 <button type="submit" class="btn btn-primary btn-md">Silahkan Masuk</button>
-                                                
                                             </div>
                                             <br>
                                             <p><a href="../"> Kembali ke awal</a></p>
                                         </center>
-
                                     </form>
                                 </div>
-
                             </div>
                             <br>
                             <br>
@@ -164,5 +172,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="./admin/template/js/scripts.js"></script>
 </body>
-
 </html>
