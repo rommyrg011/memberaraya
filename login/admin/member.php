@@ -53,7 +53,7 @@ error_reporting(E_ALL);
                                     <i class="fas fa-address-card"></i> Print
                                 </button>
                                 <button id="showSendWaModal" class="btn btn-success btn-sm btn-mobile btn-xs" disabled>
-                                    <i class="fab fa-whatsapp"></i> Kirim WhatsApp
+                                    <i class="fab fa-whatsapp"></i> Kirim
                                 </button>
                             </div>
                             <div id="alertMessage"></div>
@@ -486,12 +486,8 @@ error_reporting(E_ALL);
                     $('#sendWaMemberName').val(memberName);
                     $('#sendWaNumber').val(cleanWa);
                     
-                    var defaultMessage = `Halo ${memberName}, ini adalah informasi member Anda:\n\n` +
-                                         `*ID Member*: ${memberId}\n` +
-                                         `*Tier*: ${memberTier}\n` +
-                                         `*Status*: ${memberStatus}\n` +
-                                         `*Kedaluwarsa*: ${memberExpired}\n\n` +
-                                         `Terima kasih telah menjadi member Araya Gamestation! 😊`;
+                    var defaultMessage = `Halo ${memberName}, \n` +
+                                         `Berikut adalah link download member card anda :`;
                     $('#sendWaMessage').val(defaultMessage);
                     
                     $('#sendWaModal').modal('show');
@@ -516,6 +512,10 @@ error_reporting(E_ALL);
 
             // Gabungkan pesan dan link
             if (link) {
+                // Perbaikan: Pastikan link memiliki prefix http/https
+                if (!link.startsWith('http://') && !link.startsWith('https://')) {
+                    link = 'https://' + link;
+                }
                 message += '\n\n' + link;
             }
 
