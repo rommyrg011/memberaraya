@@ -87,7 +87,7 @@ error_reporting(E_ALL);
                                             <th>STATUS</th>
                                             <th>PEMBAYARAN</th>
                                             <th>POINT</th>
-                                            <th>BARCODE</th>
+                                            <th>QR</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -59,7 +59,7 @@ include '../function.php';
                       <th>STATUS</th>
                       <th>PEMBAYARAN</th>
                       <th>POINT</th>
-                      <th>Barcode</th>
+                      <th>QR</th>
                     </tr>
                   </thead>
                   <tbody>
