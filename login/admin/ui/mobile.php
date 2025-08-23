@@ -32,6 +32,11 @@
             aria-labelledby="userDropdownMobile"
           >
             <a class="dropdown-item" href="tiergold.php">
+              <i class="fas fa-chess"></i>
+              All Tier
+            </a>
+
+            <a class="dropdown-item" href="tiergold.php">
               <i class="fas fa-chess-king"></i>
               Gold
             </a>

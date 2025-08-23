@@ -486,7 +486,12 @@ error_reporting(E_ALL);
                     $('#sendWaMemberName').val(memberName);
                     $('#sendWaNumber').val(cleanWa);
                     
-                    var defaultMessage = `Halo ${memberName}, \n` +
+                    var defaultMessage = `Halo ${memberName}, ini adalah informasi member Anda:\n\n` +
+                                         `*ID Member*: ${memberId}\n` +
+                                         `*Tier*: ${memberTier}\n` +
+                                         `*Status*: ${memberStatus}\n` +
+                                         `*Berlaku*: ${memberExpired}\n\n` +
+                                        //  `Terima kasih telah menjadi member Araya Gamestation\n` +
                                          `Berikut adalah link download member card anda :`;
                     $('#sendWaMessage').val(defaultMessage);
                     
@@ -558,11 +563,122 @@ error_reporting(E_ALL);
             });
         });
         
-        // --- Fitur Scan Barcode Baru ---
+       // --- Fitur Scan Barcode Baru ---
         
-        // Kode scanner tetap sama
-        
+        // Ketika tombol scan diklik
+        $('#scanBarcodeBtn').on('click', function() {
+            if (typeof ZXing === 'undefined') {
+                $('#scannerMessage').text('Error: Library scanner gagal dimuat. Coba refresh halaman.');
+                $('#scanModal').modal('show');
+                return;
+            }
+            
+            $('#scannerMessage').text('Arahkan kamera ke barcode...');
+            $('#scanModal').modal('show');
+        });
+
+        // Ketika modal scanner ditampilkan
+        $('#scanModal').on('shown.bs.modal', function() {
+            startScanner();
+        });
+
+        // Ketika modal scanner ditutup
+        $('#scanModal').on('hidden.bs.modal', function() {
+            stopScanner();
+        });
+
+        function startScanner() {
+            codeReader = new ZXing.BrowserQRCodeReader();
+            const videoElement = document.getElementById('scannerVideo');
+
+            codeReader.decodeFromVideoDevice(null, videoElement, (result, err) => {
+                if (result) {
+                    console.log('Barcode berhasil discan:', result.text);
+                    stopScanner();
+                    $('#scanModal').modal('hide');
+                    
+                    let memberId = null;
+                    try {
+                        const scannedData = JSON.parse(result.text);
+                        if (scannedData["Member ID"]) {
+                            memberId = scannedData["Member ID"];
+                        }
+                    } catch (e) {
+                        memberId = result.text;
+                    }
+                    
+                    if (memberId) {
+                        fetchMemberData(memberId);
+                    } else {
+                    $('#alertMessage').html('<div class="alert alert-danger">Error: Data barcode tidak valid. Silakan coba lagi.</div>');
+                    }
+                }
+                if (err && !(err instanceof ZXing.NotFoundException)) {
+                    if (err.name === 'NotAllowedError') {
+                        $('#scannerMessage').text('Akses kamera ditolak. Mohon izinkan akses kamera.');
+                    } else if (err.name === 'NotFoundError') {
+                        $('#scannerMessage').text('Tidak ada kamera yang ditemukan di perangkat ini.');
+                    } else {
+                        $('#scannerMessage').text('Error: ' + err);
+                        console.error(err);
+                    }
+                }
+            }).then(result => {
+                if (result && result.getVideoTracks) {
+                    videoStream = result.getVideoTracks()[0];
+                }
+            }).catch(err => {
+                console.error(err);
+            });
+        }
+
+        function stopScanner() {
+            if (codeReader) {
+                codeReader.reset();
+            }
+            if (videoStream) {
+                videoStream.stop();
+                videoStream = null;
+            }
+        }
+
+        function fetchMemberData(memberId) {
+            $.ajax({
+                url: "ajax/get_member_data.php",
+                method: "GET",
+                data: { memberid: memberId },
+                dataType: "json",
+                success: function(data) {
+                    if (data.status === 'success') {
+                        // Mengisi inputan di modal viewMemberModal
+                        $('#viewMemberId').val(data.data.memberid);
+                        $('#viewNama').val(data.data.nama);
+                        $('#viewTier').val(data.data.tier);
+                        $('#viewStart').val(data.data.start);
+                        $('#viewExpired').val(data.data.expired);
+                        $('#viewStatus').val(data.data.status); // Menambahkan status
+
+                        // Menampilkan modal yang benar
+                        $('#viewMemberModal').modal('show');
+                        
+                        $('#alertMessage').html('<div class="alert alert-success">Data member berhasil di temukan.</div>');
+                        
+                        setTimeout(function() {
+                            $('#alertMessage').empty();
+                        }, 6000);
+                        
+                    } else {
+                        $('#alertMessage').html('<div class="alert alert-success">' + data.message + '</div>');
+                        
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $('#alertMessage').html('<div class="alert alert-success">' + xhr.responseText + ' (Status: ' + status + ', Error: ' + error + ')</div>');
+                }
+            });
+        }
     });
+        
 </script>
 </body>
 </html>

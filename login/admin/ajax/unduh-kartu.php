@@ -69,7 +69,7 @@ $qr_code_url = 'generate_qrcode.php?content=' . urlencode($qr_content);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Card (Unduh Foto)</title>
+    <title>Member Card - <?=$member_name; ?></title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
