@@ -122,7 +122,7 @@ $qr_code_url = 'ajax/generate_qrcode.php?content=' . urlencode($qr_content);
             flex-direction: column;
             justify-content: space-between;
             padding: 15px;
-            background-image: url('../images/belakang.png');
+            background-image: url('../images/belakang2.png');
             /* Hapus display: none agar selalu terlihat */
         }
         .bg-pattern {
