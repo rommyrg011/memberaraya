@@ -34,7 +34,7 @@ error_reporting(E_ALL);
                         <div class="card-header py-2">
                             <h4 class="m-0 font-weight-bold text-primary text-center">Member <br> Araya Gamestation</h4>
                             <div class="text-center my-2">
-                                <a href="input_member.php" class="btn btn-secondary btn-sm btn-mobile">
+                                <a href="input_member.php" class="btn btn-secondary btn-sm btn-mobile btn-xs">
                                     <i class="fas fa-plus"></i> Add
                                 </a>
                                 <button id="editRow" class="btn btn-warning btn-sm btn-mobile btn-xs" disabled>
