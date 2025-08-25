@@ -349,7 +349,7 @@ error_reporting(E_ALL);
             if (selectedRow.length) {
                 var rowData = selectedRow.data();
                 var memberId = rowData.memberid;
-                if (confirm("Apakah Anda yakin ingin menghapus member dengan ID " + memberId + "?")) {
+                if (confirm("Yakin ingin menghapus member dengan ID MEMBER " + memberId + "?")) {
                     $.ajax({
                         url: "ajax/delete_member.php",
                         method: "POST",
