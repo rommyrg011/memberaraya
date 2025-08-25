@@ -33,7 +33,7 @@
           >
             <a class="dropdown-item" href="tiergold.php">
               <i class="fas fa-chess"></i>
-              All Tier
+              All
             </a>
 
             <a class="dropdown-item" href="tiergold.php">

@@ -64,7 +64,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="tiergold.php">All Tier</a>
+              <a class="collapse-item" href="tiergold.php">All</a>
               <a class="collapse-item" href="tiergold.php">Gold</a>
               <a class="collapse-item" href="tiersilver.php">Silver</a>
               <a class="collapse-item" href="tierbronze.php">Bronze</a>
