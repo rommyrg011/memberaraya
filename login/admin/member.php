@@ -40,9 +40,6 @@ error_reporting(E_ALL);
                                 <button id="editRow" class="btn btn-warning btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <button id="deleteRow" class="btn btn-danger btn-sm btn-mobile btn-xs" disabled>
-                                    <i class="fas fa-trash"></i> Delete
-                                </button>
                                 <button id="extendRow" class="btn btn-info btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fas fa-redo"></i> Extend
                                 </button>
@@ -54,6 +51,9 @@ error_reporting(E_ALL);
                                 </button>
                                 <button id="showSendWaModal" class="btn btn-success btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fab fa-whatsapp"></i> Kirim
+                                </button>
+                                <button id="deleteRow" class="btn btn-danger btn-sm btn-mobile btn-xs" disabled>
+                                    <i class="fas fa-trash"></i> Delete
                                 </button>
                             </div>
                             <div id="alertMessage"></div>
@@ -283,6 +283,7 @@ error_reporting(E_ALL);
     </div>
     
     <?php include 'ui/mobile.php'; ?>
+    <?php include 'ui/alert.php'; ?>
     
     <?php include 'ui/js.php'; ?>
 

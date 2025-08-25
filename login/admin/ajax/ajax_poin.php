@@ -86,7 +86,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
     // PERBAIKAN PADA BARIS INI:
     // 1. Variabel yang benar: $mr['id_member']
     // 2. Sintaks yang benar dengan double quotes
-    $opsi_tombol = "<a href='member_hapus.php?id=" . $mr['id_member'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'><i class='fas fa-trash'></i></a>";
+    $opsi_tombol = "<a href='member_hapus.php?id=" . $mr['id_member'] . "' class='btn btn-danger btn-sm btn-xs' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'><i class='fas fa-trash'></i></a>";
     
     $data[] = array(
       "no" => $no++,
@@ -94,12 +94,12 @@ while($mr = mysqli_fetch_assoc($empRecords)){
       "operator" => $mr['operator'],
       "memberid" => $mr['memberid'],
       "nama" => $mr['nama'],
-      "gender" => $mr['gender'],
-      "wa" => $mr['wa'],
-      "tier" => $mr['tier'],
-      "start" => $mr['start'],
-      "expired" => $mr['expired'],
-      "status" => $mr['status'],
+    //   "gender" => $mr['gender'],
+    //   "wa" => $mr['wa'],
+    //   "tier" => $mr['tier'],
+    //   "start" => $mr['start'],
+    //   "expired" => $mr['expired'],
+    //   "status" => $mr['status'],
       "pembayaran" => $mr['pembayaran'],
       "semua_point" => $mr['semua_point'],
       "opsi" => $opsi_tombol

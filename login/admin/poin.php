@@ -61,13 +61,16 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>OPSI</th>
                       <th>NO</th>
                       <th>CABANG</th>
                       <th>OPERATOR</th>
                       <th>ID MEMBER</th>
                       <th>NAMA</th>
-                      <th>POINT DI DAPAT</th>
-                      <th>OPSI</th>
+                      <th>PEMBAYARAN</th>
+                      <th>POINT</th>
+                      <th>TANGGAL INPUT</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -82,27 +85,8 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
         <i class="fas fa-angle-up"></i>
       </a>
 
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Select "Logout" below if you are ready to end your current session.
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                Cancel
-              </button>
-              <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
+       <?php include 'ui/alert.php'; ?>
+       
     </div>
   </div>
 
@@ -124,13 +108,16 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
           "type": "POST"
         },
         "columns": [
+          { "data": "opsi", "orderable": false }, // 'opsi' juga tidak ada di database
           { "data": "no", "orderable": false }, // 'no' tidak ada di database, jadi tidak bisa diurutkan
           { "data": "cabang" },
           { "data": "operator" },
           { "data": "memberid" },
           { "data": "nama" },
-          { "data": "poin" },
-          { "data": "opsi", "orderable": false } // 'opsi' juga tidak ada di database
+          { "data": "pembayaran" },
+          { "data": "point" },
+          { "data": "tanggal_input" }
+         
         ],
         "order": [[ 3, "asc" ]] // Mengatur pengurutan default pada kolom 'ID MEMBER' secara menurun
       });
