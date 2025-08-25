@@ -1,4 +1,12 @@
-<?php include '../function.php'; ?>
+<?php 
+include '../function.php';
+
+if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
+  header("location:../");
+  exit();
+}
+
+?>
 
 <?php include 'ui/head.php'; ?>
 
@@ -95,7 +103,9 @@
                             </div> -->
 
                             <div class="d-flex justify-content-center mt-4">
-                                <button type="submit" class="btn btn-primary btn-sm" name="tambahMember">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-sm mr-2" name="tambahMember">Submit</button>
+                                <a href="member.php" type="button" class="btn btn-secondary btn-sm mr-2">Kembali</a>
+                                
                             </div>
                             </form>
                         </div>

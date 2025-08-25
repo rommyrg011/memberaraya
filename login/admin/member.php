@@ -453,7 +453,7 @@ error_reporting(E_ALL);
             if (selectedRow.length) {
                 var rowData = selectedRow.data();
                 var memberId = rowData.memberid;
-                window.open("ajax/unduh-kartu.php?memberid=" + memberId, '_blank');
+                window.open("member_card.php?memberid=" + memberId, '_blank');
             } else {
                 alert("Pilih satu baris untuk dicetak.");
             }

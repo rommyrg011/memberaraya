@@ -1,6 +1,10 @@
 <?php 
-include 'koneksi.php';
 include '../function.php';
+
+if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
+  header("location:../");
+  exit();
+}
  ?>
 
 <?php include 'ui/head.php'; ?>
