@@ -68,6 +68,7 @@ $qr_code_url = 'ajax/generate_qrcode.php?content=' . urlencode($qr_content);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="website icon" type="png" href="../images/logoaraya.png" />
     <title>Member Card - <?=$member_name; ?></title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
@@ -298,6 +299,7 @@ $qr_code_url = 'ajax/generate_qrcode.php?content=' . urlencode($qr_content);
         <button class="download-button" onclick="downloadPdf()">
             Download
         </button>
+        
     </div>
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
