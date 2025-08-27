@@ -48,15 +48,18 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                                 <button id="extendRow" class="btn btn-info btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fas fa-redo"></i> Extend
                                 </button>
-                                <button id="scanBarcodeBtn" class="btn btn-dark btn-sm btn-mobile btn-xs">
-                                    <i class="fas fa-barcode"></i> Scan
-                                </button>
+                                
                                 <button id="printRow" class="btn btn-primary btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fas fa-address-card"></i> Print
                                 </button>
                                 <button id="showSendWaModal" class="btn btn-success btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fab fa-whatsapp"></i> Kirim
                                 </button>
+
+                                <button id="scanBarcodeBtn" class="btn btn-dark btn-sm btn-mobile btn-xs">
+                                    <i class="fas fa-barcode"></i> Scan
+                                </button>
+                                
                                 <button id="deleteRow" class="btn btn-danger btn-sm btn-mobile btn-xs" disabled>
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
