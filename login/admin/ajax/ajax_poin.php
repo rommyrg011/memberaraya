@@ -10,9 +10,9 @@
 require_once('../../function.php');
 
 // Pengecekan koneksi database
-if ($koneksi->connect_error) {
+if (!$koneksi) {
     http_response_code(500);
-    echo json_encode(['error' => 'Koneksi database gagal: ' . $koneksi->connect_error]);
+    echo json_encode(['error' => 'Koneksi database gagal: ' . mysqli_connect_error()]);
     exit;
 }
 
@@ -23,22 +23,22 @@ $rowperpage = isset($_POST['length']) ? intval($_POST['length']) : 10;
 
 // Menghindari SQL Injection pada kolom pengurutan
 $columnIndex = isset($_POST['order'][0]['column']) ? intval($_POST['order'][0]['column']) : 0;
-$columnSortOrder = isset($_POST['order'][0]['dir']) ? $_POST['order'][0]['dir'] : 'asc';
+$columnSortOrder = isset($_POST['order'][0]['dir']) ? $_POST['order'][0]['dir'] : 'desc'; // Urutkan dari yang terbaru
 $searchValue = isset($_POST['search']['value']) ? mysqli_real_escape_string($koneksi, $_POST['search']['value']) : '';
 
 // Daftar nama kolom yang valid dan sesuai dengan database
+// Menggunakan alias untuk kolom dari tabel yang berbeda
 $columnNames = [
-    'id_member', 'cabang', 'operator', 'memberid', 'nama', 'gender', 'wa', 'tier',
-    'start', 'expired', 'status', 'pembayaran', 'semua_point'
+    'ip.id_poin', 'ip.tanggal_input', 'ip.cabang', 'ip.operator', 'm.memberid', 'm.nama', 'ip.pembayaran', 'ip.point'
 ];
 
-$columnName = 'id_member';
+$columnName = 'ip.tanggal_input';
 if ($columnIndex > 0 && $columnIndex < count($columnNames) && isset($columnNames[$columnIndex])) {
     $columnName = $columnNames[$columnIndex];
 }
 
 ## Query untuk total record (tanpa filter)
-$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM member");
+$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM input_poin");
 if (!$sel) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
@@ -50,17 +50,14 @@ $totalRecords = $records['allcount'];
 ## Query untuk total record (dengan filter)
 $searchQuery = " ";
 if ($searchValue != '') {
-   $searchQuery = " AND (cabang LIKE '%".$searchValue."%' OR
-        operator LIKE '%".$searchValue."%' OR
-        memberid LIKE '%".$searchValue."%' OR
-        nama LIKE '%".$searchValue."%' OR
-        gender LIKE '%".$searchValue."%' OR
-        wa LIKE '%".$searchValue."%' OR
-        tier LIKE '%".$searchValue."%' OR
-        status LIKE '%".$searchValue."%' OR
-        pembayaran LIKE '%".$searchValue."%' ) ";
+   $searchQuery = " AND (m.memberid LIKE '%".$searchValue."%' OR
+        m.nama LIKE '%".$searchValue."%' OR
+        ip.cabang LIKE '%".$searchValue."%' OR
+        ip.operator LIKE '%".$searchValue."%' OR
+        ip.pembayaran LIKE '%".$searchValue."%' OR
+        ip.point LIKE '%".$searchValue."%' ) ";
 }
-$sel = mysqli_query($koneksi, "SELECT COUNT(*) AS allcount FROM member WHERE 1 ".$searchQuery);
+$sel = mysqli_query($koneksi, "SELECT COUNT(ip.id_poin) AS allcount FROM input_poin ip JOIN member m ON ip.id_member = m.id_member WHERE 1 ".$searchQuery);
 if (!$sel) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
@@ -70,10 +67,14 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Ambil data
-$query = "SELECT * FROM member WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT ".$row.",".$rowperpage;
-$empRecords = mysqli_query($koneksi, $query);
+$query = "SELECT ip.*, m.memberid, m.nama FROM input_poin ip
+          JOIN member m ON ip.id_member = m.id_member
+          WHERE 1 ".$searchQuery." 
+          ORDER BY ".$columnName." ".$columnSortOrder." 
+          LIMIT ".$row.",".$rowperpage;
+$poinRecords = mysqli_query($koneksi, $query);
 
-if (!$empRecords) {
+if (!$poinRecords) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
     exit;
@@ -82,26 +83,19 @@ if (!$empRecords) {
 $data = array();
 $no = $row + 1;
 
-while($mr = mysqli_fetch_assoc($empRecords)){
-    // PERBAIKAN PADA BARIS INI:
-    // 1. Variabel yang benar: $mr['id_member']
-    // 2. Sintaks yang benar dengan double quotes
-    $opsi_tombol = "<a href='member_hapus.php?id=" . $mr['id_member'] . "' class='btn btn-danger btn-sm btn-xs' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'><i class='fas fa-trash'></i></a>";
+while($pr = mysqli_fetch_assoc($poinRecords)){
+    // Menyiapkan tombol hapus
+    $opsi_tombol = "<a href='ajax/poin_hapus.php?id=" . $pr['id_poin'] . "' class='btn btn-danger btn-sm btn-xs' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'><i class='fas fa-trash'></i></a>";
     
     $data[] = array(
       "no" => $no++,
-      "cabang" => $mr['cabang'],
-      "operator" => $mr['operator'],
-      "memberid" => $mr['memberid'],
-      "nama" => $mr['nama'],
-    //   "gender" => $mr['gender'],
-    //   "wa" => $mr['wa'],
-    //   "tier" => $mr['tier'],
-    //   "start" => $mr['start'],
-    //   "expired" => $mr['expired'],
-    //   "status" => $mr['status'],
-      "pembayaran" => $mr['pembayaran'],
-      "semua_point" => $mr['semua_point'],
+      "tanggal_input" => date('d-m-Y H:i:s', strtotime($pr['tanggal_input'])), 
+      "cabang" => $pr['cabang'],
+      "operator" => $pr['operator'],
+      "memberid" => $pr['memberid'],
+      "nama" => $pr['nama'],
+      "pembayaran" => $pr['pembayaran'],
+      "point" => $pr['point'],
       "opsi" => $opsi_tombol
     );
 }
@@ -116,3 +110,5 @@ $response = array(
 
 header('Content-type: application/json');
 echo json_encode($response);
+
+?>

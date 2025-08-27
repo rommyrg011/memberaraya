@@ -1,3 +1,5 @@
+
+
 <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -175,6 +177,25 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${yyyy}-${mm}-${dd}`;
     }
 });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#select-nama-member').select2({
+            placeholder: '-- Pilih Nama Member --',
+            allowClear: true,
+            width: '100%'
+        });
+
+        $('#select-nama-member').on('change', function() {
+            const memberId = $(this).val();
+            $('#id-member').val(memberId);
+        });
+    });
 </script>
   </body>
 </html>

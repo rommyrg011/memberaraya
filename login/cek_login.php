@@ -1,12 +1,14 @@
 <?php
-// Pastikan file koneksi dan session sudah disiapkan
+// Pastikan file koneksi sudah disiapkan
 include 'function.php';
+
+// Memulai sesi di awal file
 session_start();
 
 // Mencegah akses langsung jika data POST tidak ada
 if (!isset($_POST['username']) || !isset($_POST['password'])) {
     header("location:./?pesan=gagal");
-   
+    exit();
 }
 
 // Tangkap data yang dikirim dari form login
@@ -14,7 +16,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Gunakan prepared statement untuk keamanan dari SQL Injection
-$stmt = $koneksi->prepare("SELECT * FROM user WHERE username = ? AND password = ?");
+$stmt = $koneksi->prepare("SELECT id_user, nama_lengkap, username, level, cabang FROM user WHERE username = ? AND password = ?");
 $stmt->bind_param("ss", $username, $password);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -28,8 +30,9 @@ if ($cek > 0) {
     $_SESSION['id_user'] = $data['id_user'];
     $_SESSION['status'] = "login";
     $_SESSION['nama_lengkap'] = $data['nama_lengkap'];
-    $_SESSION['username'] = $username;
+    $_SESSION['username'] = $data['username'];
     $_SESSION['level'] = $data['level'];
+    $_SESSION['cabang'] = $data['cabang']; // Simpan cabang ke sesi
 
     // Alihkan user berdasarkan level
     if ($data['level'] == "admin") {
