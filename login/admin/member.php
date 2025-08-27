@@ -497,7 +497,6 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                                          `*Tier*: ${memberTier}\n` +
                                          `*Status*: ${memberStatus}\n` +
                                          `*Berlaku*: ${memberExpired}\n\n` +
-                                        //  `Terima kasih telah menjadi member Araya Gamestation\n` +
                                          `Berikut adalah link download member card anda :`;
                     $('#sendWaMessage').val(defaultMessage);
                     
