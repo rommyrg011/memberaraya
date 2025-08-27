@@ -1,16 +1,12 @@
-<script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
 
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -29,53 +25,51 @@
     });
 </script>
 
-    <script>
-      // Original scroll effect (can be removed if not needed for mobile navbar, as fixed bottom makes it less relevant)
-      let lastScrollTop = 0;
-      const mobileNavbar = document.querySelector(".mobile-bottom-navbar"); // Changed to target the new element
+<script>
+    // Original scroll effect (can be removed if not needed for mobile navbar, as fixed bottom makes it less relevant)
+    let lastScrollTop = 0;
+    const mobileNavbar = document.querySelector(".mobile-bottom-navbar"); // Changed to target the new element
 
-      window.addEventListener(
+    window.addEventListener(
         "scroll",
         function () {
-          const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
+            const scrollTop =
+                window.pageYOffset || document.documentElement.scrollTop;
 
-          if (scrollTop > lastScrollTop) {
-            // Scroll ke bawah
-            // mobileNavbar.classList.add("scrolled"); // You might not want this for a fixed bottom bar
-          } else {
-            // Scroll ke atas
-            // mobileNavbar.classList.remove("scrolled"); // You might not want this for a fixed bottom bar
-          }
+            if (scrollTop > lastScrollTop) {
+                // Scroll ke bawah
+                // mobileNavbar.classList.add("scrolled"); // You might not want this for a fixed bottom bar
+            } else {
+                // Scroll ke atas
+                // mobileNavbar.classList.remove("scrolled"); // You might not want this for a fixed bottom bar
+            }
 
-          lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         },
         false
-      );
-    </script>
+    );
+</script>
 
-    <!-- bagian cetak card member -->
-    <script>
-        function saveMemberCardAsImage() {
-            const cardElement = document.getElementById('memberCard');
+<script>
+    function saveMemberCardAsImage() {
+        const cardElement = document.getElementById('memberCard');
 
-            html2canvas(cardElement, {
-                scale: 3, // Meningkatkan skala untuk kualitas gambar yang lebih baik
-                useCORS: true, // Penting jika ada gambar eksternal (misal: QR Code dari API)
-                logging: false
-            }).then(function(canvas) {
-                const imageData = canvas.toDataURL('image/png');
-                const link = document.createElement('a');
-                link.href = imageData;
-                link.download = 'member_card_anggota.png';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            });
-        }
-    </script>
+        html2canvas(cardElement, {
+            scale: 3, // Meningkatkan skala untuk kualitas gambar yang lebih baik
+            useCORS: true, // Penting jika ada gambar eksternal (misal: QR Code dari API)
+            logging: false
+        }).then(function(canvas) {
+            const imageData = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = imageData;
+            link.download = 'member_card_anggota.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+</script>
 
-<!-- Untuk generate auto id member -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const namaLengkapInput = document.getElementById('nama-lengkap');
@@ -118,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<!-- untuk expired Otomatis -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const namaLengkapInput = document.getElementById('nama-lengkap');
@@ -195,5 +188,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-  </body>
+ </body>
 </html>
