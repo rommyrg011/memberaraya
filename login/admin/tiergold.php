@@ -59,6 +59,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>NO</th>
                                             <th>ID MEMBER</th>
                                             <th>NAMA</th>
                                             <th>TIER</th>
@@ -105,6 +106,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                 "type": "POST"
             },
             "columns": [
+                { "data": "no" },
                 { "data": "memberid" },
                 { "data": "nama" },
                 { "data": "tier" },

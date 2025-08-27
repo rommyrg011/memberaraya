@@ -78,6 +78,7 @@ if (!$empRecords) {
 }
 
 $data = array();
+$no = 1;
 
 while($mr = mysqli_fetch_assoc($empRecords)){
     
@@ -110,6 +111,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
     $expired_date = isset($mr['expired']) && $mr['expired'] !== '0000-00-00' ? date('d-m-Y', strtotime($mr['expired'])) : '-';
 
     $data[] = array(
+        "no" => $no,
         "memberid" => $mr['memberid'],
         "nama" => $mr['nama'],
         "tier" => $formatted_tier,

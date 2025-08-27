@@ -38,27 +38,18 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                     <div class="card shadow mb-3">
                         <div class="card-header py-2">
                             <br>
-                            <h4 class="m-0 font-weight-bold text-primary text-center">Top 10 Leaderboard <br> Member Araya Gamestation</h4>
+                            <h4 class="m-0 font-weight-bold text-primary text-center">Leaderboard <br> Member Araya Gamestation</h4>
                             <br>
                             
                             <div id="alertMessage"></div>
-                            <?php
-                            if(isset($_SESSION['notif'])){
-                            ?>
-                                <div class="alert alert-success mt-2">
-                                    <?php echo $_SESSION['notif']; ?>
-                                </div>
-                            <?php
-                                unset($_SESSION['notif']);
-                            }
-                            ?>
                         </div>
                         
                         <div class="card-body py-1 mt-3">
                             <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>RANK</th>
                                             <th>ID MEMBER</th>
                                             <th>NAMA</th>
                                             <th>TIER</th>
@@ -102,12 +93,13 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
             "paging": false,
             "info": false,
             "searching": false,
-            "ordering": false, // Pengurutan dinonaktifkan di sisi klien
+            "ordering": false,
             "ajax": {
                 "url": "ajax/ajax_leaderboard.php",
                 "type": "POST"
             },
             "columns": [
+                { "data": "no" },
                 { "data": "memberid" },
                 { "data": "nama" },
                 { "data": "tier" },

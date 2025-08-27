@@ -15,7 +15,7 @@ $rowperpage = isset($_POST['length']) ? intval($_POST['length']) : 10;
 
 // Daftar nama kolom yang valid dan sesuai dengan database untuk tampilan ini
 $columnNames = [
-    'memberid', 'nama', 'tier', 'semua_point'
+    'no', 'memberid', 'nama', 'tier', 'semua_point'
 ];
 
 // Ambil data
@@ -58,15 +58,15 @@ while($mr = mysqli_fetch_assoc($empRecords)){
     $formatted_tier = '<span class="alert ' . $class . '" style="padding: .25rem .5rem; font-size: 75%; border-radius: 20px;">' . htmlspecialchars($mr['tier']) . '</span>';
     
     $data[] = array(
+        "no" => $no,
         "memberid" => $mr['memberid'],
         "nama" => $mr['nama'],
         "tier" => $formatted_tier,
         "semua_point" => $mr['semua_point']
     );
+    $no++;
 }
 
-// Total records sekarang didasarkan pada jumlah total member aktif, bukan hanya 10.
-// Ini penting untuk DataTables agar bisa menghitung total halaman dengan benar.
 $sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM member WHERE status = 'Aktif'");
 if (!$sel) {
     http_response_code(500);
