@@ -9,13 +9,6 @@
 // Sesuaikan path jika letak file koneksi.php berbeda
 require_once('../../function.php');
 
-// Pengecekan koneksi database
-if (!$koneksi) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Koneksi database gagal: ' . mysqli_connect_error()]);
-    exit;
-}
-
 // DataTables request parameters dengan validasi
 $draw = isset($_POST['draw']) ? intval($_POST['draw']) : 0;
 $row = isset($_POST['start']) ? intval($_POST['start']) : 0;
@@ -89,7 +82,7 @@ while($pr = mysqli_fetch_assoc($poinRecords)){
     
     $data[] = array(
       "no" => $no++,
-      "tanggal_input" => date('d-m-Y H:i:s', strtotime($pr['tanggal_input'])), 
+      "tanggal_input" => date('d-m-Y | H:i:s', strtotime( $pr['tanggal_input'])), 
       "cabang" => $pr['cabang'],
       "operator" => $pr['operator'],
       "memberid" => $pr['memberid'],

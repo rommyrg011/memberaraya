@@ -142,7 +142,7 @@ while($mr = mysqli_fetch_assoc($empRecords)){
 
     // Membuat URL untuk halaman detail
     // Ganti 'halaman_detail_anda.php' dengan nama file halaman detail yang sebenarnya
-    $detail_url = 'ajax/halaman_detail_anda.php?memberid=' . urlencode($mr['memberid']);
+    $detail_url = 'ajax/detail_barcode.php?memberid=' . urlencode($mr['memberid']);
 
     // Menggabungkan gambar QR code dan tautan detail
     $qr_code_with_link = '<a href="' . $detail_url . '" title="Lihat Detail Member: ' . htmlspecialchars($mr['nama']) . '">';

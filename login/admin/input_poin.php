@@ -33,13 +33,16 @@ if ($result) {
                         </div>
                         <form method="post">
                             <div class="card-body">
+                                <input type="hidden" name="cabang_user" value="<?= htmlspecialchars($_SESSION['cabang']) ?>">
+                                <input type="hidden" name="operator_user" value="<?= htmlspecialchars($_SESSION['nama_lengkap']) ?>">
+                                
                                 <div class="mb-3">
                                     <label class="form-label">ID Member :</label>
                                     <input type="text" id="id-member" class="form-control" placeholder="ID Member" readonly name="memberid">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Nama Lengkap :</label>
-                                    <select class="form-control" id="select-nama-member" name="nama">
+                                    <select class="form-control" id="select-nama-member" name="memberid_from_select">
                                         <option value="" hidden> -- Pilih Nama Member --</option>
                                         <?php foreach ($members as $member): ?>
                                             <option value="<?= htmlspecialchars($member['memberid']) ?>">
