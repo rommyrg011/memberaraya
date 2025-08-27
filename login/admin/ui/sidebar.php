@@ -76,7 +76,7 @@
         <hr class="sidebar-divider" />
 
         <li class="nav-item active">
-          <a class="nav-link" href="cetak_member.php">
+          <a class="nav-link" href="leaderboard.php">
             <i class="fas fa-chart-line"></i>
             <span>Leaderboard</span>
           </a>

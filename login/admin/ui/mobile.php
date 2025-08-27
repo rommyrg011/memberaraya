@@ -55,7 +55,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-center py-2" href="cetak_member.php">
+          <a class="nav-link text-center py-2" href="leaderboard.php">
           <i class="fas fa-chart-line"></i>
             <span class="small">Leaderboard</span>
           </a>
