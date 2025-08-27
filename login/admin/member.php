@@ -2,9 +2,14 @@
 
 include '../function.php';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
+if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
+    header("location:../");
+    exit();
+}
 ?>
 
 <?php include 'ui/head.php'; ?>
