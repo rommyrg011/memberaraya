@@ -38,7 +38,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                     <div class="card shadow mb-3">
                         <div class="card-header py-2">
                             <br>
-                            <h4 class="m-0 font-weight-bold text-primary text-center">Member Gold </h4>
+                            <h4 class="m-0 font-weight-bold text-primary text-center">Semua Tier </h4>
                             <br>
                             
                             <div id="alertMessage"></div>
@@ -101,7 +101,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "ajax/ajax_tiergold.php",
+                "url": "ajax/ajax_alltier.php",
                 "type": "POST"
             },
             "columns": [

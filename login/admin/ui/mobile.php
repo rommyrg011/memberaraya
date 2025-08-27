@@ -31,14 +31,14 @@
             class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdownMobile"
           >
-            <a class="dropdown-item" href="tiergold.php">
+            <a class="dropdown-item" href="alltier.php">
               <i class="fas fa-chess"></i>
               All
             </a>
 
-            <a class="dropdown-item" href="tiergold.php">
-              <i class="fas fa-chess-king"></i>
-              Gold
+            <a class="dropdown-item" href="tierbronze.php">
+              <i class="fas fa-chess-pawn"></i>
+              Bronze
             </a>
 
             <a class="dropdown-item" href="tiersilver.php">
@@ -46,9 +46,9 @@
               Silver
             </a>
 
-            <a class="dropdown-item" href="tierbronze.php">
-              <i class="fas fa-chess-pawn"></i>
-              Bronze
+            <a class="dropdown-item" href="tiergold.php">
+              <i class="fas fa-chess-king"></i>
+              Gold
             </a>
             
           </div>

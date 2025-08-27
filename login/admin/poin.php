@@ -39,7 +39,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
             <div class="card-header py-3">
               <h4 class="m-0 font-weight-bold text-primary text-center">Input Poin Member</h4>
               <center><a href="input_poin.php" class="btn btn-secondary btn-sm mt-3"><i class="fas fa-plus"></i> Tambah Point</a></center>
-              <br>
+              
               <?php
               //jika berhasil insert
               if(isset($_SESSION['notif'])){
