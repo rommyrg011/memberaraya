@@ -39,7 +39,7 @@ if ($cek > 0) {
         header("location:./?admin");
         exit();
     } else if ($data['level'] == "operator") {
-        header("location:./?admin");
+        header("location:./?operator");
         exit();
     } else {
         // Jika level tidak dikenali

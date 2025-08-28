@@ -126,7 +126,7 @@
                                                  <i class='fa fa-refresh fa-spin'></i>
                                                  <strong>Login Sukses! Tunggu Sebentar...</strong>
                                                  </center>
-                                                 <meta http-equiv='refresh' content='3; url=admin/'/>
+                                                 <meta http-equiv='refresh' content='3; url=operator/'/>
                                              </div>";
                                         }
                                         ?>
