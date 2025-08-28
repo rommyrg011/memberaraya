@@ -16,7 +16,8 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Gunakan prepared statement untuk keamanan dari SQL Injection
-$stmt = $koneksi->prepare("SELECT id_user, nama_lengkap, username, level, cabang FROM user WHERE username = ? AND password = ?");
+// Tambahkan 'foto' ke dalam query SELECT
+$stmt = $koneksi->prepare("SELECT id_user, nama_lengkap, username, level, cabang, foto FROM user WHERE username = ? AND password = ?");
 $stmt->bind_param("ss", $username, $password);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -32,7 +33,8 @@ if ($cek > 0) {
     $_SESSION['nama_lengkap'] = $data['nama_lengkap'];
     $_SESSION['username'] = $data['username'];
     $_SESSION['level'] = $data['level'];
-    $_SESSION['cabang'] = $data['cabang']; // Simpan cabang ke sesi
+    $_SESSION['cabang'] = $data['cabang'];
+    $_SESSION['foto'] = $data['foto']; // Tambahkan session foto di sini
 
     // Alihkan user berdasarkan level
     if ($data['level'] == "admin") {

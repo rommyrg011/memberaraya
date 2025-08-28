@@ -299,6 +299,7 @@ $qr_code_url = 'ajax/generate_qrcode.php?content=' . urlencode($qr_content);
         <button class="download-button" onclick="downloadPdf()">
             Download
         </button>
+        <!-- <a href="javascript:history.back()" class="back-button">Kembali</a> -->
         
     </div>
 

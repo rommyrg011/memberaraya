@@ -462,7 +462,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
             if (selectedRow.length) {
                 var rowData = selectedRow.data();
                 var memberId = rowData.memberid;
-                window.open("member_card.php?memberid=" + memberId, '_blank');
+                window.open("member_card.php?memberid=" + memberId, '_self');
             } else {
                 alert("Pilih satu baris untuk dicetak.");
             }

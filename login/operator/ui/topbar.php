@@ -1,6 +1,5 @@
 <?php 
 // Include database connection (assuming this is handled by ../function.php)
-$koneksi = mysqli_connect('localhost', 'root', '', 'araya');
 
 // Check for members with expiration dates within the next 3 days
 $today = date('Y-m-d');
@@ -15,6 +14,12 @@ $query_expiring_members = mysqli_query($koneksi, "
 
 $expiring_members_count = mysqli_num_rows($query_expiring_members);
 ?>
+<style>
+    .red-text {
+        color: red;
+    }
+
+</style>
 
 <nav
     class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
@@ -66,7 +71,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
                                 Expired: <?= $expired_date; ?>
                             </div>
                             <span class="font-weight-bold">
-                                Member: <?= htmlspecialchars($member['nama']); ?> (<?= htmlspecialchars($member['memberid']); ?>)
+                                <?= htmlspecialchars($member['nama']); ?> dengan Id Member <span class="red-text"><?= htmlspecialchars($member['memberid']); ?></span>
                                 akan segera expired!
                             </span>
                         </div>
@@ -74,7 +79,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
                 <?php
                     }
                 } else {
-                    echo '<a class="dropdown-item text-center small text-gray-500" href="#">No new alerts.</a>';
+                    echo '<a class="dropdown-item text-center small text-gray-500" href="#">Tidak ada notifikasi</a>';
                 }
                 ?>
                 <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> -->
