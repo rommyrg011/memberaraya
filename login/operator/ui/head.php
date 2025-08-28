@@ -7,6 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="website icon" type="png" href="../images/logoaraya.png" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <title>Dashboard Operator</title>
     
     <!-- Custom fonts for this template-->
@@ -30,8 +31,10 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
 
-    <style>
-     /* Mobile Navbar Styles */
+  </head>
+
+  <style>
+    /* Mobile Navbar Styles */
 .mobile-navbar {
   display: none;
   position: fixed;
@@ -121,16 +124,16 @@
 
   /* HAPUS ATAU KOMENTARI BLOK DI BAWAH INI */
   /*
-  .topbar .navbar-search {
-    max-width: 180px;
-  }
-
-  .topbar #alertsDropdown,
-  .topbar #messagesDropdown,
-  .topbar .topbar-divider {
-    display: none;
-  }
-  */
+    .topbar .navbar-search {
+      max-width: 180px;
+    }
+  
+    .topbar #alertsDropdown,
+    .topbar #messagesDropdown,
+    .topbar .topbar-divider {
+      display: none;
+    }
+    */
   /* BATAS AKHIR BLOK YANG DIHAPUS/DIKOMENTARI */
 
   .d-sm-inline-block.btn {
@@ -227,19 +230,19 @@
 }
 
 /* perkecil ukuran pada saat tampilan mobile */
-  /* mobile-table.css */
-  @media (max-width: 576px) {
+/* mobile-table.css */
+@media (max-width: 576px) {
   /* Mengatur ukuran font pada tabel saat tampilan mobile */
   #dataTable {
     font-size: 0.65rem;
   }
-  
+
   /* Mengatur padding (jarak dalam sel) agar lebih rapat */
   #dataTable th,
   #dataTable td {
     padding: 0.3rem;
   }
-  
+
   /* Mengatur tampilan tabel agar lebih optimal di mobile */
   .table-responsive {
     overflow-x: auto;
@@ -249,63 +252,75 @@
 
 /* bagian untuk css member */
 .selected {
-      background-color: tomato !important;
-      color: white !important;
-      cursor: pointer;
-    }
-    
-    /* Perbaikan Jarak Card Header dan Body */
-    .card-header, .card-body {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
+  background-color: tomato !important;
+  color: white !important;
+  cursor: pointer;
+}
 
-    /* Merapikan tata letak tombol */
-    .btn-group {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-    }
+/* Perbaikan Jarak Card Header dan Body */
+.card-header,
+.card-body {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
 
-    /* Penyesuaian Tombol untuk Mobile */
-    @media (max-width: 576px) {
-      .btn-mobile {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-      }
-    }
-    
-    /* Perbaikan CSS untuk DataTable */
-    .dataTables_wrapper .dataTables_length,
-    .dataTables_wrapper .dataTables_filter,
-    .dataTables_wrapper .dataTables_info,
-    .dataTables_wrapper .dataTables_paginate {
-        font-size: 0.8rem; /* Ukuran font lebih kecil */
-    }
-    
-    .dataTables_wrapper .dataTables_filter input,
-    .dataTables_wrapper .dataTables_length select {
-        height: calc(1.5em + .5rem + 2px); /* Menyesuaikan tinggi input */
-        padding: 0.25rem 0.5rem; /* Padding lebih kecil */
-        font-size: 0.8rem; /* Ukuran font lebih kecil */
-    }
-    
-    /* Mengatur lebar kolom secara otomatis berdasarkan konten */
-    #dataTable {
-        table-layout: auto !important;
-        width: 100% !important;
-    }
-    #dataTable th, #dataTable td {
-        white-space: nowrap;
-    }
+/* Merapikan tata letak tombol */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
 
-    /* mengubah ukuran button pada saat tampilan mobile */
-    @media (max-width: 768px) {
-      .btn-xs {
-        padding: .25rem .5rem; /* Smaller padding */
-        font-size: .8rem;      /* Smaller font size */
-        line-height: 1.2;      /* Adjust line height for a tighter fit */
-      }
+/* Penyesuaian Tombol untuk Mobile */
+@media (max-width: 576px) {
+  .btn-mobile {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* Perbaikan CSS untuk DataTable */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+  font-size: 0.8rem; /* Ukuran font lebih kecil */
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+  height: calc(1.5em + 0.5rem + 2px); /* Menyesuaikan tinggi input */
+  padding: 0.25rem 0.5rem; /* Padding lebih kecil */
+  font-size: 0.8rem; /* Ukuran font lebih kecil */
+}
+
+/* Mengatur lebar kolom secara otomatis berdasarkan konten */
+#dataTable {
+  table-layout: auto !important;
+  width: 100% !important;
+}
+#dataTable th,
+#dataTable td {
+  white-space: nowrap;
+}
+
+/* mengubah ukuran button pada saat tampilan mobile */
+@media (max-width: 768px) {
+  .btn-xs {
+    padding: 0.25rem 0.5rem; /* Smaller padding */
+    font-size: 0.8rem; /* Smaller font size */
+    line-height: 1.2; /* Adjust line height for a tighter fit */
+  }
+}
+
+/* untuk tampilan mobile leaderboard */
+  /* === Tambahan Kode CSS untuk Tampilan Mobile === */
+  @media (max-width: 767px) {
+        .card-header h4 {
+            font-size: 1.25rem !important; /* Mengubah ukuran font judul menjadi lebih kecil */
+        }
+        .card-header br {
+            display: none; /* Menghapus baris baru untuk judul lebih ringkas */
+        }
     }
-    </style>
-  </head>
+  </style>

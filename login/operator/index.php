@@ -19,23 +19,6 @@ $f=mysqli_num_rows($e);
 ?>
 
 <?php include 'ui/head.php'; ?>
-<style>
-    .chart-container {
-        position: relative;
-        height: 80vh; /* Menggunakan viewport height untuk tinggi responsif */
-        width: 100%;
-        margin-top: 20px;
-    }
-    /* === Tambahan Kode CSS untuk Tampilan Mobile === */
-    @media (max-width: 767px) {
-        .card-header h4 {
-            font-size: 1.25rem !important; /* Mengubah ukuran font judul menjadi lebih kecil */
-        }
-        .card-header br {
-            display: none; /* Menghapus baris baru untuk judul lebih ringkas */
-        }
-    }
-</style>
 
 <body id="page-top">
     <div id="wrapper">

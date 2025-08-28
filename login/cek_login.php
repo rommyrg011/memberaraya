@@ -34,7 +34,7 @@ if ($cek > 0) {
     $_SESSION['username'] = $data['username'];
     $_SESSION['level'] = $data['level'];
     $_SESSION['cabang'] = $data['cabang'];
-    $_SESSION['foto'] = $data['foto']; // Tambahkan session foto di sini
+    $_SESSION['foto'] = $data['foto'];
 
     // Alihkan user berdasarkan level
     if ($data['level'] == "admin") {

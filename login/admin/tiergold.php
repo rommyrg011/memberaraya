@@ -25,15 +25,6 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center mb-4">
                     </div>
-
-                    <script>
-                        // membuat alert auto close
-                        window.setTimeout(function() {
-                            $(".alert-success").fadeTo(500, 0).slideUp(500, function(){
-                                $(this).remove();
-                            });
-                        }, 4000);
-                    </script>
                     
                     <div class="card shadow mb-3">
                         <div class="card-header py-2">
@@ -42,16 +33,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                             <br>
                             
                             <div id="alertMessage"></div>
-                            <?php
-                            if(isset($_SESSION['notif'])){
-                            ?>
-                                <div class="alert alert-success mt-2">
-                                    <?php echo $_SESSION['notif']; ?>
-                                </div>
-                            <?php
-                                unset($_SESSION['notif']);
-                            }
-                            ?>
+                        
                         </div>
                         
                         <div class="card-body py-1 mt-3">

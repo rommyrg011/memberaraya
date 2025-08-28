@@ -9,6 +9,53 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
 
 $id_user = $_SESSION['id_user'];
 
+// Handle form submission
+if (isset($_POST['update_profil'])) {
+    $nama_lengkap = mysqli_real_escape_string($koneksi, $_POST['nama_lengkap']);
+    $cabang = mysqli_real_escape_string($koneksi, $_POST['cabang']);
+    $foto_lama = $data_profil['foto'];
+    $foto_baru = $foto_lama;
+
+    // Handle foto jika ada upload baru
+    if ($_FILES['foto']['name']) {
+        $dir_foto = "img/profil/";
+        $nama_file = uniqid() . '_' . basename($_FILES['foto']['name']);
+        $path_file = $dir_foto . $nama_file;
+        
+        // Pindahkan file yang diupload
+        if (move_uploaded_file($_FILES['foto']['tmp_name'], $path_file)) {
+           // Hapus foto lama jika bukan foto default
+            if ($foto_lama != $dir_foto . 'circle.png' && file_exists($foto_lama)) {
+                unlink($foto_lama);
+            }
+            $foto_baru = $path_file;
+        }
+    }
+
+    // Update data profil ke database
+    $query_update = "UPDATE user SET 
+                        nama_lengkap = '$nama_lengkap', 
+                        cabang = '$cabang', 
+                        foto = '$foto_baru' 
+                    WHERE id_user = '$id_user'";
+    
+    if (mysqli_query($koneksi, $query_update)) {
+        // Update session dengan data baru
+        $_SESSION['nama_lengkap'] = $nama_lengkap;
+        $_SESSION['foto'] = $foto_baru;
+
+        $_SESSION['alert'] = 'success';
+        $_SESSION['pesan'] = 'Profil berhasil diperbarui!';
+        header("location: profil");
+        exit();
+    } else {
+        $_SESSION['alert'] = 'danger';
+        $_SESSION['pesan'] = 'Gagal memperbarui profil: ' . mysqli_error($koneksi);
+        header("location: profil");
+        exit();
+    }
+}
+
 // Ambil data profil user saat ini dari database
 $query_profil = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id_user'");
 $data_profil = mysqli_fetch_assoc($query_profil);
