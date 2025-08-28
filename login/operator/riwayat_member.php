@@ -32,6 +32,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
           
           <div class="card shadow mb-3">
             <div class="card-header py-2">
+              <br>
               <h4 class="m-0 font-weight-bold text-primary text-center">History Member</h4>
               <br>
               <?php

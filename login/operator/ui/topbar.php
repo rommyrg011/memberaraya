@@ -1,123 +1,127 @@
+<?php 
+// Include database connection (assuming this is handled by ../function.php)
+$koneksi = mysqli_connect('localhost', 'root', '', 'araya');
+
+// Check for members with expiration dates within the next 3 days
+$today = date('Y-m-d');
+$three_days_later = date('Y-m-d', strtotime('+3 days'));
+
+$query_expiring_members = mysqli_query($koneksi, "
+    SELECT memberid, nama, expired
+    FROM member
+    WHERE expired <= '$three_days_later' AND expired >= '$today' AND `status` = 'Aktif'
+    ORDER BY expired ASC
+");
+
+$expiring_members_count = mysqli_num_rows($query_expiring_members);
+?>
 
 <nav
-            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-          >
-            <button
-              id="sidebarToggleTop"
-              class="btn btn-link d-md-none rounded-circle mr-3"
+    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+>
+    <button
+        id="sidebarToggleTop"
+        class="btn btn-link d-md-none rounded-circle mr-3"
+    >
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="alertsDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
             >
-              <i class="fa fa-bars"></i>
-            </button>
+                <i class="fas fa-bell fa-fw"></i>
+                <?php if ($expiring_members_count > 0) { ?>
+                    <span class="badge badge-danger badge-counter"><?= $expiring_members_count; ?></span>
+                <?php } ?>
+            </a>
+            <div
+                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="alertsDropdown"
+            >
+                <h6 class="dropdown-header">Notifikasi</h6>
+                <?php 
+                if ($expiring_members_count > 0) {
+                    while ($member = mysqli_fetch_assoc($query_expiring_members)) {
+                        $expired_date = date('d F Y', strtotime($member['expired']));
+                        $is_today_expired = ($member['expired'] == $today);
+                        $alert_bg_color = $is_today_expired ? 'bg-danger' : 'bg-warning';
+                        $alert_icon = $is_today_expired ? 'fa-exclamation-triangle' : 'fa-calendar-alt';
+                ?>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle <?= $alert_bg_color; ?>">
+                                <i class="fas <?= $alert_icon; ?> text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="small text-gray-500">
+                                Expired: <?= $expired_date; ?>
+                            </div>
+                            <span class="font-weight-bold">
+                                Member: <?= htmlspecialchars($member['nama']); ?> (<?= htmlspecialchars($member['memberid']); ?>)
+                                akan segera expired!
+                            </span>
+                        </div>
+                    </a>
+                <?php
+                    }
+                } else {
+                    echo '<a class="dropdown-item text-center small text-gray-500" href="#">No new alerts.</a>';
+                }
+                ?>
+                <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> -->
+            </div>
+        </li>
+        
+        <div class="topbar-divider d-none d-sm-block"></div>
 
-            <ul class="navbar-nav ml-auto">
-            
-              <li class="nav-item dropdown no-arrow mx-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="alertsDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-bell fa-fw"></i>
-                  <span class="badge badge-danger badge-counter">3+</span>
-                </a>
-                <div
-                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="alertsDropdown"
-                >
-                  <h6 class="dropdown-header">Alerts Center</h6>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                      <div class="icon-circle bg-primary">
-                        <i class="fas fa-file-alt text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="small text-gray-500">December 12, 2019</div>
-                      <span class="font-weight-bold"
-                        >A new monthly report is ready to download!</span
-                      >
-                    </div>
-                  </a>
-                </div>
-              </li>
-
-              <li class="nav-item dropdown no-arrow mx-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="messagesDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-envelope fa-fw"></i>
-                  <span class="badge badge-danger badge-counter">7</span>
-                </a>
-                <div
-                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="messagesDropdown"
-                >
-                  <h6 class="dropdown-header">Message Center</h6>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-list-image mr-3">
-                      <img
-                        class="rounded-circle"
-                        src="img/undraw_profile_1.svg"
-                        alt="..."
-                      />
-                      <div class="status-indicator bg-success"></div>
-                    </div>
-                    <div class="font-weight-bold">
-                      <div class="text-truncate">
-                        Hi there! I am wondering if you can help me with a
-                        problem I've been having.
-                      </div>
-                      <div class="small text-gray-500">Emily Fowler · 58m</div>
-                    </div>
-                  </a>
-                </div>
-              </li>
-
-              <div class="topbar-divider d-none d-sm-block"></div>
-
-              <li class="nav-item dropdown no-arrow">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="userDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    ><?php echo $_SESSION['nama_lengkap']; ?></span
-                  >
-                  <img
+        <li class="nav-item dropdown no-arrow">
+            <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+            >
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                    <?php echo $_SESSION['nama_lengkap']; ?>
+                </span>
+                <img
                     class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg"
-                  />
+                    src="<?= htmlspecialchars($_SESSION['foto']); ?>"
+                    alt="Foto Profil"
+                />
+            </a>
+            <div
+                class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown"
+            >
+                <a class="dropdown-item" href="profil.php">
+                    <img
+                        src="<?= htmlspecialchars($_SESSION['foto']); ?>"
+                        alt="Foto Profil"
+                        class="rounded-circle mr-2"
+                        style="width: 20px; height: 20px; object-fit: cover;"
+                    >
+                    Profil <?php echo $_SESSION['nama_lengkap']; ?>
                 </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="userDropdown"
-                >
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a>
 
-                  <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" href="../logout.php">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="../logout.php">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </nav>
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
