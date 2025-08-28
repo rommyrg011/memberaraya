@@ -12,7 +12,7 @@ $id_user = $_SESSION['id_user'];
 // Handle form submission
 if (isset($_POST['update_profil'])) {
     $nama_lengkap = mysqli_real_escape_string($koneksi, $_POST['nama_lengkap']);
-    $cabang = mysqli_real_escape_string($koneksi, $_POST['cabang']);
+    // $cabang = mysqli_real_escape_string($koneksi, $_POST['cabang']);
     $foto_lama = $data_profil['foto'];
     $foto_baru = $foto_lama;
 
@@ -35,7 +35,7 @@ if (isset($_POST['update_profil'])) {
     // Update data profil ke database
     $query_update = "UPDATE user SET 
                         nama_lengkap = '$nama_lengkap', 
-                        cabang = '$cabang', 
+                        -- cabang = '$cabang', 
                         foto = '$foto_baru' 
                     WHERE id_user = '$id_user'";
     
@@ -73,7 +73,7 @@ $data_profil = mysqli_fetch_assoc($query_profil);
                 <?php include 'ui/topbar.php'; ?>
 
                 <div class="container-fluid">
-                    <center><h1 class="h3 mb-4 text-gray-800">Profil <?= $data_profil['nama_lengkap']; ?></h1></center>
+                    <h1 class="h3 mb-4 text-gray-800">Profil <?= $data_profil['nama_lengkap']; ?></h1>
 
                     <div class="row">
                         <div class="col-lg-4 mb-4">
@@ -99,14 +99,7 @@ $data_profil = mysqli_fetch_assoc($query_profil);
                                             <label for="nama_lengkap">Nama Lengkap</label>
                                             <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= htmlspecialchars($data_profil['nama_lengkap']); ?>" required>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="cabang">Cabang</label>
-                                            <select class="form-control" id="cabang" name="cabang" required>
-                                                <option value="Gambut" <?= ($data_profil['cabang'] == 'Gambut') ? 'selected' : ''; ?>>Gambut</option>
-                                                <option value="Beruntung" <?= ($data_profil['cabang'] == 'Beruntung') ? 'selected' : ''; ?>>Beruntung</option>
-                                                <option value="Manarap" <?= ($data_profil['cabang'] == 'Manarap') ? 'selected' : ''; ?>>Manarap</option>
-                                            </select>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label for="foto">Foto Profil Anda</label>
                                             <input type="file" class="form-control-file" id="foto" name="foto" accept="image/*">

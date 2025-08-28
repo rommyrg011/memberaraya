@@ -32,13 +32,27 @@
             <span>Member</span></a>
         </li>
 
+        <li class="nav-item active">
+          <a class="nav-link" href="leaderboard">
+            <i class="fas fa-chart-line"></i>
+            <span>Leaderboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="history">
+            <i class="fas fa-undo"></i>
+            <span>History</span>
+          </a>
+        </li>
+
         <hr class="sidebar-divider" />
-        <div class="sidebar-heading">Input Point</div>
+        <div class="sidebar-heading">User</div>
         
         <li class="nav-item active">
-          <a class="nav-link" href="poin">
-            <i class="fas fa-keyboard"></i>
-            <span>Point</span></a>
+          <a class="nav-link" href="user">
+            <i class="fas fa-user"></i>
+            <span>User</span></a>
         </li>
 
         <hr class="sidebar-divider" />
@@ -72,23 +86,6 @@
             </div>
           </div>
         </li>
-
-        <hr class="sidebar-divider" />
-
-        <li class="nav-item active">
-          <a class="nav-link" href="leaderboard">
-            <i class="fas fa-chart-line"></i>
-            <span>Leaderboard</span>
-          </a>
-        </li>
-
-        <li class="nav-item active">
-          <a class="nav-link" href="riwayat_member">
-            <i class="fas fa-undo"></i>
-            <span>History</span>
-          </a>
-        </li>
-        
 
         <hr class="sidebar-divider d-none d-md-block" />
 

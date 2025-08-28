@@ -99,33 +99,47 @@ $f=mysqli_num_rows($e);
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card shadow mb-3">
-                        <div class="card-header py-2">
-                            <br>
-                            <h4 class="m-0 font-weight-bold text-primary text-center">Leaderboard <br> Member Araya Gamestation</h4>
-                            <br>
-                            
-                            <div id="alertMessage"></div>
-                        </div>
                         
-                        <div class="card-body py-1 mt-3">
-                            <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>RANK</th>
-                                            <th>ID MEMBER</th>
-                                            <th>NAMA</th>
-                                            <th>TIER</th>
-                                            <th>POINT</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <br>
+                                    <h4 class="m-0 font-weight-bold text-primary text-center">Leaderboard <br> Member Araya Gamestation</h4>
+                                    <br>
+                                    <div id="alertMessage"></div>
+                                </div>
+                                
+                                <div class="card-body py-1 mt-3">
+                                    <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                                        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>RANK</th>
+                                                    <th>ID MEMBER</th>
+                                                    <th>NAMA</th>
+                                                    <th>TIER</th>
+                                                    <th>POINT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-3">
+                                    <h4 class="m-0 font-weight-bold text-primary text-center">Grafik Tingkatan <br> Member Araya Gamestation</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="tierChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -134,8 +148,6 @@ $f=mysqli_num_rows($e);
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-   
     </div>
 
     <?php include 'ui/mobile.php'; ?>
@@ -144,7 +156,7 @@ $f=mysqli_num_rows($e);
     <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.19.1/umd/index.min.js"></script>
 
     <script>
@@ -170,6 +182,50 @@ $f=mysqli_num_rows($e);
                 { "data": "tier" },
                 { "data": "semua_point" }
             ],
+        });
+
+        // Inisialisasi Chart dengan warna baru
+        var ctx = document.getElementById('tierChart').getContext('2d');
+        var tierChart = new Chart(ctx, {
+            type: 'line', 
+            data: {
+                labels: ['Bronze', 'Silver', 'Gold'],
+                datasets: [{
+                    label: 'Jumlah',
+                    data: [<?= $b ?>, <?= $d ?>, <?= $f ?>],
+                    backgroundColor: [
+                        'rgba(220, 53, 69, 0.2)', // Merah untuk Bronze
+                        'rgba(108, 117, 125, 0.2)', // Abu-abu untuk Silver
+                        'rgba(255, 193, 7, 0.2)' // Emas untuk Gold
+                    ],
+                    borderColor: [
+                        'rgb(220, 53, 69)',
+                        'rgb(108, 117, 125)',
+                        'rgb(255, 193, 7)'
+                    ],
+                    borderWidth: 2,
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Jumlah Member'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tier'
+                        }
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
         });
     });
         

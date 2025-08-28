@@ -35,7 +35,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
         <li class="nav-item dropdown no-arrow mx-1">
             <a
                 class="nav-link dropdown-toggle"
-                href="#"
+                href=""
                 id="alertsDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -68,7 +68,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
                         </div>
                         <div>
                             <div class="small text-gray-500">
-                                Expired: <?= $expired_date; ?>
+                                Segera Expired: <?= $expired_date; ?>
                             </div>
                             <span class="font-weight-bold">
                                 <?= htmlspecialchars($member['nama']); ?> dengan Id Member <span class="red-text"><?= htmlspecialchars($member['memberid']); ?></span>
@@ -91,7 +91,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
         <li class="nav-item dropdown no-arrow">
             <a
                 class="nav-link dropdown-toggle"
-                href="#"
+                href=""
                 id="userDropdown"
                 role="button"
                 data-toggle="dropdown"

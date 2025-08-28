@@ -15,9 +15,23 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-center py-2" href="poin">
-          <i class="fas fa-keyboard"></i>
-            <span class="small">Point</span>
+          <a class="nav-link text-center py-2" href="leaderboard">
+          <i class="fas fa-chart-line"></i>
+            <span class="small">Leaderboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-center py-2" href="history">
+          <i class="fas fa-undo"></i>
+            <span class="small">History</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-center py-2" href="user">
+          <i class="fas fa-user"></i>
+            <span class="small">User</span>
           </a>
         </li>
        
@@ -54,18 +68,6 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-center py-2" href="leaderboard">
-          <i class="fas fa-chart-line"></i>
-            <span class="small">Leaderboard</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link text-center py-2" href="riwayat_member">
-          <i class="fas fa-undo"></i>
-            <span class="small">History</span>
-          </a>
-        </li>
+       
       </ul>
     </nav>

@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <link rel="website icon" type="png" href="../images/logoaraya.png" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <title>Dashboard Operator</title>
+    <title>Dashboard Admin</title>
     
     <!-- Custom fonts for this template-->
     <link
