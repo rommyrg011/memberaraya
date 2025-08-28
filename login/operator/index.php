@@ -58,7 +58,7 @@ $f=mysqli_num_rows($e);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div
-                                                class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                                                class="text-xs font-weight-bold text-danger text-uppercase mb-1"
                                             >
                                                 Bronze
                                             </div>
@@ -80,7 +80,7 @@ $f=mysqli_num_rows($e);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div
-                                                class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                                                class="text-xs font-weight-bold text-secondary text-uppercase mb-1"
                                             >
                                                 Silver
                                             </div>
@@ -101,7 +101,7 @@ $f=mysqli_num_rows($e);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div
-                                                class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                                                class="text-xs font-weight-bold text-warning text-uppercase mb-1"
                                             >
                                                 Gold
                                             </div>
