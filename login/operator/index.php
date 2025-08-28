@@ -152,7 +152,7 @@ $f=mysqli_num_rows($e);
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <?php include 'ui/alert.php'; ?>
+   
     </div>
 
     <?php include 'ui/mobile.php'; ?>

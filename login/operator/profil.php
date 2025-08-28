@@ -80,7 +80,7 @@ $data_profil = mysqli_fetch_assoc($query_profil);
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <?php include 'ui/alert.php'; ?>
+
     <?php include 'ui/mobile.php'; ?>
     <?php include 'ui/js.php'; ?>
 </body>

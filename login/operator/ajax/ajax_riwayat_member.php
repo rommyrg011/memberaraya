@@ -138,11 +138,11 @@ while($mr = mysqli_fetch_assoc($empRecords)){
     ];
     
     $qr_content = json_encode($qr_data_array);
-    $qr_code_url = 'ajax/generate_qrcode.php?content=' . urlencode($qr_content);
+    $qr_code_url = 'ajax/generate_qrcode?content=' . urlencode($qr_content);
 
     // Membuat URL untuk halaman detail
-    // Ganti 'halaman_detail_anda.php' dengan nama file halaman detail yang sebenarnya
-    $detail_url = 'ajax/detail_barcode.php?memberid=' . urlencode($mr['memberid']);
+    // Ganti 'halaman_detail_anda' dengan nama file halaman detail yang sebenarnya
+    $detail_url = 'ajax/detail_barcode?memberid=' . urlencode($mr['memberid']);
 
     // Menggabungkan gambar QR code dan tautan detail
     $qr_code_with_link = '<a href="' . $detail_url . '" title="Lihat Detail Member: ' . htmlspecialchars($mr['nama']) . '">';

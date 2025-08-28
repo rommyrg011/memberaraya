@@ -89,7 +89,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
     </div>
     
     <?php include 'ui/mobile.php'; ?>
-    <?php include 'ui/alert.php'; ?>
+    
     
     <?php include 'ui/js.php'; ?>
 

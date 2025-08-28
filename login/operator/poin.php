@@ -38,7 +38,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
           <div class="card shadow mb-3">
             <div class="card-header py-3">
               <h4 class="m-0 font-weight-bold text-primary text-center">Input Poin Member</h4>
-              <center><a href="input_poin.php" class="btn btn-secondary btn-sm mt-3"><i class="fas fa-plus"></i> Tambah Point</a></center>
+              <center><a href="input_poin" class="btn btn-secondary btn-sm mt-3"><i class="fas fa-plus"></i> Tambah Point</a></center>
               
               <?php
               //jika berhasil insert
@@ -85,7 +85,6 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
         <i class="fas fa-angle-up"></i>
       </a>
 
-       <?php include 'ui/alert.php'; ?>
        
     </div>
   </div>
@@ -104,7 +103,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
         "processing": true,
         "serverSide": true,
         "ajax": {
-          "url": "ajax/ajax_poin.php",
+          "url": "ajax/ajax_poin",
           "type": "POST"
         },
         "columns": [

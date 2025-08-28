@@ -1,5 +1,5 @@
 <?php 
-// Include database connection (assuming this is handled by ../function.php)
+// Include database connection (assuming this is handled by ../function)
 
 // Check for members with expiration dates within the next 3 days
 $today = date('Y-m-d');
@@ -111,7 +111,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
                 class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown"
             >
-                <a class="dropdown-item" href="profil.php">
+                <a class="dropdown-item" href="profil">
                     <img
                         src="<?= htmlspecialchars($_SESSION['foto']); ?>"
                         alt="Foto Profil"
@@ -122,7 +122,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
                 </a>
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="../logout.php">
+                <a class="dropdown-item" href="../logout">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>

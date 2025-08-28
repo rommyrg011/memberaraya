@@ -28,7 +28,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
       <div class="card-header py-3">
        <h4 class="m-0 font-weight-bold text-primary text-center"> Input Member</h4>
       </div>
-      <form method="post">
+      <form method="post" autocomplete="off">
       <div class="card-body">
 
        <input type="hidden" name="cabang" value="<?= htmlspecialchars($_SESSION['cabang']); ?>">
@@ -91,7 +91,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
 
               <div class="d-flex justify-content-center mt-4">
         <button type="submit" class="btn btn-primary btn-sm mr-2" name="tambahMember">Submit</button>
-        <a href="member.php" type="button" class="btn btn-secondary btn-sm mr-2">Kembali</a>
+        <a href="member" type="button" class="btn btn-secondary btn-sm mr-2">Kembali</a>
         
        </div>
        </form>
@@ -102,7 +102,6 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
  <i class="fas fa-angle-up"></i>
  </a>
 
- <?php include 'ui/alert.php'; ?>
  </div>
 
  <?php include 'ui/mobile.php'; ?>

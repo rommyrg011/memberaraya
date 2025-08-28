@@ -39,7 +39,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                         <div class="card-header py-2">
                             <h4 class="m-0 font-weight-bold text-primary text-center">Member <br> Araya Gamestation</h4>
                             <div class="text-center my-2">
-                                <a href="input_member.php" class="btn btn-secondary btn-sm btn-mobile btn-xs">
+                                <a href="input_member" class="btn btn-secondary btn-sm btn-mobile btn-xs">
                                     <i class="fas fa-plus"></i> Add
                                 </a>
                                 <button id="editRow" class="btn btn-warning btn-sm btn-mobile btn-xs" disabled>
@@ -261,7 +261,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="sendWaForm" enctype="multipart/form-data">
+                            <form id="sendWaForm" enctype="multipart/form-data" autocomplete="off">
                                 <input type="hidden" name="memberid" id="sendWaMemberId">
                                 <input type="hidden" name="memberName" id="sendWaMemberName">
                                 <div class="form-group">
@@ -273,9 +273,9 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
                                     <textarea class="form-control" id="sendWaMessage" name="message" rows="4"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sendWaLink">Link Download (Opsional)</label>
-                                    <input type="url" class="form-control" id="sendWaLink" name="link" placeholder="Masukkan URL lengkap, misal: https://example.com">
-                                    <small class="form-text text-muted">Link akan ditambahkan di akhir pesan dan bisa diklik.</small>
+                                    <label for="sendWaLink">Link Download</label>
+                                    <input type="url" class="form-control" id="sendWaLink" name="link" placeholder="Masukkan URL, misal: https://example.com">
+                                    
                                 </div>
                             </form>
                         </div>
@@ -291,7 +291,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){
     </div>
     
     <?php include 'ui/mobile.php'; ?>
-    <?php include 'ui/alert.php'; ?>
+   
     
     <?php include 'ui/js.php'; ?>
 

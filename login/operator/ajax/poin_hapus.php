@@ -10,7 +10,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
 // Pastikan ID transaksi poin dikirim melalui URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     $_SESSION['notif'] = "ID transaksi tidak valid.";
-    header('location: poin.php');
+    header('location: poin');
     exit();
 }
 
@@ -66,14 +66,14 @@ try {
     // Jika semua operasi berhasil, commit transaksi
     mysqli_commit($koneksi);
     $_SESSION['notif'] = "Data poin berhasil dihapus dan poin member telah dikurangi.";
-    header('location: ../poin.php');
+    header('location: ../poin');
     exit();
 
 } catch (Exception $e) {
     // Jika ada operasi yang gagal, rollback transaksi
     mysqli_rollback($koneksi);
     $_SESSION['notif'] = $e->getMessage();
-    header('location: poin.php');
+    header('location: poin');
     exit();
 }
 
