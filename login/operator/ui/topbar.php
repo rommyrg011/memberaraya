@@ -104,7 +104,7 @@ $expiring_members_count = mysqli_num_rows($query_expiring_members);
                 <img
                     class="img-profile rounded-circle"
                     src="<?= htmlspecialchars($_SESSION['foto']); ?>"
-                    alt="Foto Profil"
+                    
                 />
             </a>
             <div
