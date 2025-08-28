@@ -78,7 +78,7 @@ $no = $row + 1;
 
 while($pr = mysqli_fetch_assoc($poinRecords)){
     // Menyiapkan tombol hapus
-    $opsi_tombol = "<a href='ajax/poin_hapus.php?id=" . $pr['id_poin'] . "' class='btn btn-danger btn-sm btn-xs' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'><i class='fas fa-trash'></i></a>";
+    $opsi_tombol = "<a href='ajax/poin_hapus?id=" . $pr['id_poin'] . "' class='btn btn-danger btn-sm btn-xs' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'><i class='fas fa-trash'></i></a>";
     
     $data[] = array(
       "no" => $no++,

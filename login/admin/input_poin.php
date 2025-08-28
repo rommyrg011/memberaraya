@@ -65,7 +65,7 @@ if ($result) {
                                 </div>
                                 <div class="d-flex justify-content-center mt-4">
                                     <button type="submit" class="btn btn-primary btn-sm mr-2" name="tambahPoinMember">Submit</button>
-                                    <a href="poin.php" type="submit" class="btn btn-secondary btn-sm">Kembali</a>
+                                    <a href="poin" type="submit" class="btn btn-secondary btn-sm">Kembali</a>
                                 </div>
                             </div>
                         </form>
@@ -75,7 +75,7 @@ if ($result) {
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fas fa-angle-up"></i>
             </a>
-            <?php include 'ui/alert.php'; ?>
+            
         </div>
         <?php include 'ui/mobile.php'; ?>
         <?php include 'ui/js.php'; ?>

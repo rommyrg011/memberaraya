@@ -15,7 +15,7 @@
         <hr class="sidebar-divider my-0" />
 
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">
+          <a class="nav-link" href="./">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
           >
@@ -27,7 +27,7 @@
         <div class="sidebar-heading">Master Data</div>
         
         <li class="nav-item active">
-          <a class="nav-link" href="member.php">
+          <a class="nav-link" href="member">
             <i class="fas fa-book"></i>
             <span>Member</span></a>
         </li>
@@ -36,7 +36,7 @@
         <div class="sidebar-heading">Input Point</div>
         
         <li class="nav-item active">
-          <a class="nav-link" href="poin.php">
+          <a class="nav-link" href="poin">
             <i class="fas fa-keyboard"></i>
             <span>Point</span></a>
         </li>
@@ -64,10 +64,10 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="alltier.php">All</a>
-              <a class="collapse-item" href="tierbronze.php">Bronze</a>
-              <a class="collapse-item" href="tiersilver.php">Silver</a>
-              <a class="collapse-item" href="tiergold.php">Gold</a>
+              <a class="collapse-item" href="alltier">All</a>
+              <a class="collapse-item" href="tierbronze">Bronze</a>
+              <a class="collapse-item" href="tiersilver">Silver</a>
+              <a class="collapse-item" href="tiergold">Gold</a>
               
             </div>
           </div>
@@ -76,14 +76,14 @@
         <hr class="sidebar-divider" />
 
         <li class="nav-item active">
-          <a class="nav-link" href="leaderboard.php">
+          <a class="nav-link" href="leaderboard">
             <i class="fas fa-chart-line"></i>
             <span>Leaderboard</span>
           </a>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="riwayat_member.php">
+          <a class="nav-link" href="riwayat_member">
             <i class="fas fa-undo"></i>
             <span>History</span>
           </a>
