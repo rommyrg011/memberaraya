@@ -1,175 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silahkan Login</title>
     <link rel="website icon" type="png" href="images/logoaraya.png" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<style>
-    /* CSS untuk video latar belakang */
-    #video-background {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: -100;
-        background-size: cover;
-    }
-
-    /* CSS untuk overlay hitam */
-    .video-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Warna hitam dengan transparansi */
-        z-index: -99;
-    }
-    
-    h1 {
-        font-family: Helvetica;
-        color: white;
-        font-weight: 790;
-    }
-
-    h5 {
-        font-family: Helvetica;
-        color: #79DC30;
-        font-weight: 390;
-    }
-
-    h6 {
-        font-family: Helvetica;
-        color: white;
-        font-weight: 500;
-    }
-
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 20%;
-    }
-
-    .btn-md {
-        color: white;
-    }
-
-    .btn-md:hover {
-        color: white;
-    }
-    
-    a{
-        text-decoration: none;
-    }
-</style>
 
 <body>
-    <video autoplay muted loop id="video-background">
-        <source src="images/bg.mp4" type="video/mp4">
-        
-    </video>
+    
+    <div class="video-background">
+        <video autoplay muted loop id="myVideo">
+            <source src="images/bg.mp4" type="video/mp4">
+        </video>
+    </div>
     <div class="video-overlay"></div>
 
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-lg-6">
-                            <br>
-                            <center><img src="images/logoaraya.png"></center>
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
-                                    <h4 class="text-center font-weight-light my-4">SILAHKAN LOGIN</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form action="cek_login.php" method="post">
-                                        <?php
-                                        //Jika Gagal Login
-                                        if (isset($_GET['pesan'])) {
-                                            if ($_GET['pesan'] == "gagal") {
-                                                echo "<div class='alert alert-danger alert-dismissible'>
-                                                     <center><i class='fa fa-hourglass fa-spin' style='color:red;'></i>  <strong>Maaf! Username dan Password tidak sesuai</strong></center>
-                                                     <meta http-equiv='refresh' content='3; url=./'/>
-                                                 </div>";
-                                            }
-                                        }
-
-                                        //Jika berhasil Login admin
-                                        if (isset($_GET['admin'])) {
-                                            echo "
-                                             <div class='alert alert-info alert-dismissible'>
-                                                 <center>
-                                                 <i class='fa fa-refresh fa-spin'></i>
-                                                 <strong>Login Sukses! Tunggu Sebentar...</strong>
-                                                 </center>
-                                                 <meta http-equiv='refresh' content='3; url=admin/'/>
-                                             </div>";
-                                        }
-
-                                        //Jika berhasil Login operator
-                                        if (isset($_GET['operator'])) {
-                                            echo "
-                                             <div class='alert alert-info alert-dismissible'>
-                                                 <center>
-                                                 <i class='fa fa-refresh fa-spin'></i>
-                                                 <strong>Login Sukses! Tunggu Sebentar...</strong>
-                                                 </center>
-                                                 <meta http-equiv='refresh' content='3; url=operator/'/>
-                                             </div>";
-                                        }
-                                        ?>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" name="username" type="text" placeholder="Username" required autocomplete="off" />
-                                            <label>Username</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" name="password" type="password" id="myInput" placeholder="Password" required autocomplete="off" />
-                                            <label>Password</label>
-                                        </div>
-                                        <input type="checkbox" onclick="myFunction()"> Perlihatkan Sandi
-                                        <center>
-                                            <br>
-                                            <script>
-                                                function myFunction() {
-                                                    var x = document.getElementById("myInput");
-                                                    if (x.type === "password") {
-                                                        x.type = "text";
-                                                    } else {
-                                                        x.type = "password";
-                                                    }
-                                                }
-                                            </script>
-                                            <div class="col-md-12">
-                                                <button type="submit" class="btn btn-primary btn-md">Silahkan Masuk</button>
-                                            </div>
-                                            <br>
-                                            <p><a href="../"> Kembali ke awal</a></p>
-                                        </center>
-                                    </form>
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <h6 align="center">&copy; ARAYA GAMESTATION - 2025</h6>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+    <div class="login-container">
+        <img src="images/logoaraya.png" alt="Logo Araya" class="logo">
+        <form id="loginForm" class="login-form" action="cek_login.php" method="POST">
+            <h2>SILAHKAN LOGIN</h2>
+            <div class="input-group">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group password-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()">
+                    <i id="eye-icon" class="fa fa-eye-slash"></i>
+                </span>
+            </div>
+            <button type="submit">Login</button>
+            <a href="../" class="link-kembali">Kembali ke awal</a>
+        </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const eyeIcon = document.getElementById("eye-icon");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const pesan = urlParams.get('pesan');
+        const admin = urlParams.get('admin');
+        const operator = urlParams.get('operator');
+
+        if (pesan === 'gagal') {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Username atau password salah!",
+                showConfirmButton: false,
+                timer: 3000
+            });
+            window.history.replaceState({}, document.title, window.location.pathname);
+        } else if (pesan === 'gagal_level') {
+            Swal.fire({
+                position: "top-end",
+                icon: "warning",
+                title: "Level pengguna tidak valid!",
+                showConfirmButton: false,
+                timer: 3000
+            });
+            window.history.replaceState({}, document.title, window.location.pathname);
+        } else if (admin !== null || operator !== null) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Login Berhasil!",
+                showConfirmButton: false,
+                timer: 4000
+            }).then(() => {
+                if (admin !== null) {
+                    window.location.href = 'admin/';
+                } else if (operator !== null) {
+                    window.location.href = 'operator/';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

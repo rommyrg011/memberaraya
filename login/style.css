@@ -1,0 +1,155 @@
+body {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#myVideo {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Warna hitam dengan transparansi */
+  z-index: -99;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  backdrop-filter: blur(5px);
+  width: 350px;
+  max-width: 90%;
+  margin: 20px;
+}
+
+.login-form h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+}
+
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.link-kembali {
+  margin-top: 15px;
+  display: block;
+  color: #666;
+}
+
+/* CSS Kustom untuk SweetAlert2 */
+.swal2-container.swal2-top-end > .swal2-popup {
+  font-size: 0.9em;
+  padding: 0.5em 1em;
+  min-width: 300px; /* Lebar minimum untuk membuatnya terlihat seperti balok */
+  width: 300px; /* Lebar tetap untuk desktop */
+  max-width: 90%; /* Responsif: maksimal 90% lebar layar */
+}
+
+.swal2-popup {
+  border-radius: 0.3em;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.swal2-title {
+  font-size: 1.25em !important;
+  margin: 0;
+  padding: 0;
+}
+
+.swal2-html-container {
+  font-size: 1em !important;
+}
+
+/* Media queries untuk memastikan SweetAlert responsif */
+@media (max-width: 576px) {
+  .swal2-container.swal2-top-end > .swal2-popup {
+    min-width: 250px;
+    width: 80%; /* Sesuaikan lebar untuk layar yang lebih kecil */
+  }
+}
