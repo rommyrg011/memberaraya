@@ -29,27 +29,32 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-center py-2" href="member">
-          <i class="fas fa-book"></i>
-            <span class="small">Member</span>
+         <li class="nav-item">
+          <a class="nav-link text-center py-2" href="#" id="dataMobile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-folder"></i>
+            <span class="small">Data</span>
           </a>
-        </li>
+          <div
+            class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            aria-labelledby="dataMobile"
+          >
+            <a class="dropdown-item" href="member">
+              <i class="fas fa-chess"></i>
+              member
+            </a>
 
-        <li class="nav-item">
-          <a class="nav-link text-center py-2" href="leaderboard">
-          <i class="fas fa-chart-line"></i>
-            <span class="small">Leaderboard</span>
-          </a>
-        </li>
+            <a class="dropdown-item" href="leaderboard">
+              <i class="fas fa-chess-pawn"></i>
+              Leaderboard
+            </a>
 
-        <li class="nav-item">
-          <a class="nav-link text-center py-2" href="history">
-          <i class="fas fa-undo"></i>
-            <span class="small">History</span>
-          </a>
+            <a class="dropdown-item" href="history">
+              <i class="fas fa-chess-queen"></i>
+              History
+            </a>
+            
+          </div>
         </li>
-
         
         <li class="nav-item">
           <a class="nav-link text-center py-2" href="#" id="tierMobile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

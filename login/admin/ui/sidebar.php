@@ -55,25 +55,31 @@
         
 
         <div class="sidebar-heading">Master Data</div>
-        
         <li class="nav-item active">
-          <a class="nav-link" href="member">
-            <i class="fas fa-book"></i>
-            <span>Member</span></a>
-        </li>
-
-        <li class="nav-item active">
-          <a class="nav-link" href="leaderboard">
-            <i class="fas fa-chart-line"></i>
-            <span>Leaderboard</span>
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#masterData"
+            aria-expanded="true"
+            aria-controls="masterData"
+          >
+            <i class="fas fa-folder"></i>
+            <span>Data</span>
           </a>
-        </li>
-
-        <li class="nav-item active">
-          <a class="nav-link" href="history">
-            <i class="fas fa-undo"></i>
-            <span>History</span>
-          </a>
+          <div
+            id="masterData"
+            class="collapse"
+            aria-labelledby="headingPages"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="member">Member</a>
+              <a class="collapse-item" href="leaderboard">Leaderboard</a>
+              <a class="collapse-item" href="history">History</a>
+              
+            </div>
+          </div>
         </li>
 
         <hr class="sidebar-divider" />
