@@ -30,7 +30,7 @@
         <ul class="hidden md:flex md:space-x-4 lg:space-x-6 text-sm">
           <li>
             <a
-              href="#beranda"
+              href="./"
               class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
             >
               <i class="fas fa-home"></i>
@@ -93,7 +93,7 @@
         <ul class="flex flex-col items-center space-y-4">
           <li>
             <a
-              href="#beranda"
+              href="./"
               class="text-gray-700 hover:text-blue-600 transition-colors text-sm"
               >Beranda</a
             >
@@ -142,10 +142,10 @@
     >
       <div class="container mx-auto">
         <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 md:mb-4">
-          Araya Gamestation: Rasakan Sensasi Gaming Terbaik!
+          Araya Gamestation
         </h1>
-        <p class="text-sm md:text-base lg:text-xl font-light max-w-2xl mx-auto">
-          Nikmati pengalaman gaming premium dengan console terbaru dan game terlengkap, hanya di **Araya Gamestation**.
+        <p class="text-sm md:text-base lg:text font-light max-w-2xl mx-auto">
+          Nikmati pengalaman gaming premium dengan console terbaru dan game terlengkap, hanya di Araya Gamestation.
         </p>
       </div>
     </header>
@@ -161,7 +161,7 @@
           >
             <i class="fas fa-desktop text-3xl md:text-4xl text-blue-600 mb-2"></i>
             <h3 class="text-sm md:text-base font-semibold">SMART TV 43, 55, 65, 75 INCH</h3>
-            <p class="text-xs text-gray-600 mt-1">Layar jernih untuk grafis maksimal.</p>
+            <!-- <p class="text-xs text-gray-600 mt-1">Layar jernih untuk grafis maksimal.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
@@ -170,28 +170,28 @@
             <h3 class="text-sm md:text-base font-semibold">
               INTERNET KECEPATAN TINGGI
             </h3>
-            <p class="text-xs text-gray-600 mt-1">100 Mbps untuk pengalaman online tanpa lag.</p>
+            <!-- <p class="text-xs text-gray-600 mt-1">100 Mbps untuk pengalaman online tanpa lag.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
           >
             <i class="fas fa-couch text-3xl md:text-4xl text-blue-600 mb-2"></i>
             <h3 class="text-sm md:text-base font-semibold">SOFA EMPUK & NYAMAN</h3>
-            <p class="text-xs text-gray-600 mt-1">Bermain berjam-jam tanpa lelah.</p>
+            <!-- <p class="text-xs text-gray-600 mt-1">Bermain berjam-jam tanpa lelah.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
           >
             <i class="fas fa-snowflake text-3xl md:text-4xl text-blue-600 mb-2"></i>
             <h3 class="text-sm md:text-base font-semibold">RUANGAN FULL AC</h3>
-            <p class="text-xs text-gray-600 mt-1">Tetap sejuk dan fokus saat bermain.</p>
+            <!-- <p class="text-xs text-gray-600 mt-1">Tetap sejuk dan fokus saat bermain.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
           >
             <i class="fas fa-gamepad text-3xl md:text-4xl text-blue-600 mb-2"></i>
-            <h3 class="text-sm md:text-base font-semibold">CONSOLE PS3, PS4, PS5 & NINTENDO</h3>
-            <p class="text-xs text-gray-600 mt-1">Pilihan console lengkap sesuai selera Anda.</p>
+            <h3 class="text-sm md:text-base font-semibold">CONSOLE <br> PS3, PS4, PS5 & NINTENDO</h3>
+            <!-- <p class="text-xs text-gray-600 mt-1">Pilihan console lengkap sesuai selera Anda.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
@@ -201,7 +201,7 @@
               HARGA TERJANGKAU <br />
               MULAI IDR 5000
             </h3>
-            <p class="text-xs text-gray-600 mt-1">Main sepuasnya tanpa khawatir biaya.</p>
+            <!-- <p class="text-xs text-gray-600 mt-1">Main sepuasnya tanpa khawatir biaya.</p> -->
           </div>
         </div>
       </section>
@@ -213,25 +213,25 @@
         >
           <div class="game-item flex-none w-32 md:w-40 text-center">
             <img
-              src="https://via.placeholder.com/150/FF5733/FFFFFF?text=FIFA+24"
+              src="https://image.api.playstation.com/vulcan/ap/rnd/202408/0817/4248a0d1a669210e5caf5174eda176c7883be2c9089fa106.png"
               alt="EA Sports FC 24"
-              class="w-full h-auto rounded-lg shadow-md mb-2"
+              class="w-full h-44 rounded-lg shadow-md mb-2 object-over "
             />
             <h3 class="font-semibold text-gray-700 text-sm">EA Sports FC 24</h3>
           </div>
           <div class="game-item flex-none w-32 md:w-40 text-center">
             <img
-              src="https://via.placeholder.com/150/33FF57/FFFFFF?text=GTA+V"
+              src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"
               alt="GTA V"
-              class="w-full h-auto rounded-lg shadow-md mb-2"
+              class="w-full h-44 rounded-lg shadow-md mb-2 object-over "
             />
             <h3 class="font-semibold text-gray-700 text-sm">Grand Theft Auto V</h3>
           </div>
           <div class="game-item flex-none w-32 md:w-40 text-center">
             <img
-              src="https://via.placeholder.com/150/3357FF/FFFFFF?text=God+of+War"
+              src="https://www.vgstores.ng/wp-content/uploads/2022/11/God-of-War-Ragnarok-PS5-468x600-1.webp"
               alt="God of War Ragnarok"
-              class="w-full h-auto rounded-lg shadow-md mb-2"
+              class="w-full h-44 rounded-lg shadow-md mb-2 object-over "
             />
             <h3 class="font-semibold text-gray-700 text-sm">God of War Ragnarok</h3>
           </div>
@@ -239,7 +239,7 @@
             <img
               src="https://via.placeholder.com/150/FFFF33/000000?text=Spider-Man"
               alt="Spider-Man 2"
-              class="w-full h-auto rounded-lg shadow-md mb-2"
+              class="w-full h-44 rounded-lg shadow-md mb-2 object-over "
             />
             <h3 class="font-semibold text-gray-700 text-sm">Spider-Man 2</h3>
           </div>
@@ -247,7 +247,7 @@
             <img
               src="https://via.placeholder.com/150/8A2BE2/FFFFFF?text=Tekken+8"
               alt="Tekken 8"
-              class="w-full h-auto rounded-lg shadow-md mb-2"
+              class="w-full h-44 rounded-lg shadow-md mb-2 object-over "
             />
             <h3 class="font-semibold text-gray-700 text-sm">Tekken 8</h3>
           </div>
@@ -255,7 +255,7 @@
             <img
               src="https://via.placeholder.com/150/ADD8E6/000000?text=Fortnite"
               alt="Fortnite"
-              class="w-full h-auto rounded-lg shadow-md mb-2"
+              class="w-full h-44 rounded-lg shadow-md mb-2 object-over "
             />
             <h3 class="font-semibold text-gray-700 text-sm">Fortnite</h3>
           </div>
@@ -263,7 +263,7 @@
             <img
               src="https://via.placeholder.com/150/D2B48C/FFFFFF?text=NBA+2K24"
               alt="NBA 2K24"
-              class="w-full h-auto rounded-lg shadow-md mb-2"
+              class="w-full h-44 rounded-lg shadow-md mb-2 object-over "
             />
             <h3 class="font-semibold text-gray-700 text-sm">NBA 2K24</h3>
           </div>
