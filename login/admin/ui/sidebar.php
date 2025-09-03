@@ -22,6 +22,36 @@
         </li>
 
         <hr class="sidebar-divider" />
+
+        <div class="sidebar-heading">User</div>
+        
+        <li class="nav-item active">
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#User"
+            aria-expanded="true"
+            aria-controls="User"
+          >
+            <i class="fas fa-user"></i>
+            <span>User</span>
+          </a>
+          <div
+            id="User"
+            class="collapse"
+            aria-labelledby="headingPages"
+            data-parent="#accordionSidebar"
+          >
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="administrator">Administrator</a>
+              <a class="collapse-item" href="operator">Operator</a>
+              
+            </div>
+          </div>
+        </li>
+
+        <hr class="sidebar-divider" />
         
 
         <div class="sidebar-heading">Master Data</div>
@@ -47,15 +77,6 @@
         </li>
 
         <hr class="sidebar-divider" />
-        <div class="sidebar-heading">User</div>
-        
-        <li class="nav-item active">
-          <a class="nav-link" href="user">
-            <i class="fas fa-user"></i>
-            <span>User</span></a>
-        </li>
-
-        <hr class="sidebar-divider" />
 
         <div class="sidebar-heading">Tier Member</div>
 
@@ -64,15 +85,15 @@
             class="nav-link collapsed"
             href="#"
             data-toggle="collapse"
-            data-target="#collapsePages"
+            data-target="#Tier"
             aria-expanded="true"
-            aria-controls="collapsePages"
+            aria-controls="Tier"
           >
             <i class="fas fa-crown"></i>
             <span>Tier</span>
           </a>
           <div
-            id="collapsePages"
+            id="Tier"
             class="collapse"
             aria-labelledby="headingPages"
             data-parent="#accordionSidebar"

@@ -7,6 +7,28 @@
           </a>
         </li>
 
+         <li class="nav-item">
+          <a class="nav-link text-center py-2" href="#" id="UserMobile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+            <span class="small">User</span>
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            aria-labelledby="UserMobile"
+          >
+            <a class="dropdown-item" href="administrator">
+              <i class="fas fa-chess"></i>
+              Administrator
+            </a>
+
+            <a class="dropdown-item" href="operator">
+              <i class="fas fa-chess-pawn"></i>
+             Operator
+            </a>
+            
+          </div>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link text-center py-2" href="member">
           <i class="fas fa-book"></i>
@@ -28,22 +50,15 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-center py-2" href="user">
-          <i class="fas fa-user"></i>
-            <span class="small">User</span>
-          </a>
-        </li>
-       
         
         <li class="nav-item">
-          <a class="nav-link text-center py-2" href="#" id="userDropdownMobile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link text-center py-2" href="#" id="tierMobile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-crown"></i>
             <span class="small">Tier</span>
           </a>
           <div
             class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-            aria-labelledby="userDropdownMobile"
+            aria-labelledby="tierMobile"
           >
             <a class="dropdown-item" href="alltier">
               <i class="fas fa-chess"></i>
