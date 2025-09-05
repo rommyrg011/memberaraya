@@ -25,7 +25,7 @@
         class="container mx-auto px-4 py-4 md:py-3 flex justify-between items-center"
       >
         <div class="nav-brand">
-          <a href="#" class="text-xl md:text-2xl font-bold text-blue-600">Araya Gamestation</a>
+          <a href="./" class="text-xl md:text-2xl font-bold text-blue-600">Araya Gamestation</a>
         </div>
         <ul class="hidden md:flex md:space-x-4 lg:space-x-6 text-sm">
           <li>
@@ -138,19 +138,25 @@
     </nav>
 
     <header id="beranda"
-      class="bg-blue-600 text-white py-12 px-4 md:py-16 text-center hero-bg bg-cover bg-center"
+      class="bg-blue-400 text-white pt-24 md:pt-32 pb-0 text-center hero-bg bg-cover bg-center overflow-hidden"
     >
-      <div class="container mx-auto">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 md:mb-4">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl md:text-4xl lg:text-6xl font-extrabold md:mb-3">
           Araya Gamestation
         </h1>
-        <p class="text-sm md:text-base lg:text font-light max-w-2xl mx-auto">
+        <p class="text-sm md:text-base lg:text font-light max-w-3xl mx-auto">
           Nikmati pengalaman gaming premium dengan console terbaru dan game terlengkap, hanya di Araya Gamestation.
         </p>
       </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto mt-8 -mb-1">
+        <path fill="#f3f4f6" fill-opacity="1" 
+        d="M0,64L40,80C80,96,160,128,240,128C320,128,400,96,480,117.3C560,139,640,213,720,202.7C800,192,880,96,960,85.3C1040,75,1120,149,1200,176C1280,203,1360,181,1400,170.7L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+      </svg>
     </header>
+    
 
     <main class="container mx-auto px-4 py-6 md:py-10">
+      
       <section id="fasilitas" class="mb-8 md:mb-12">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">Fasilitas Unggulan Kami</h2>
         <div
@@ -161,7 +167,6 @@
           >
             <i class="fas fa-desktop text-3xl md:text-4xl text-blue-600 mb-2"></i>
             <h3 class="text-sm md:text-base font-semibold">SMART TV 43, 55, 65, 75 INCH</h3>
-            <!-- <p class="text-xs text-gray-600 mt-1">Layar jernih untuk grafis maksimal.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
@@ -170,28 +175,24 @@
             <h3 class="text-sm md:text-base font-semibold">
               INTERNET KECEPATAN TINGGI
             </h3>
-            <!-- <p class="text-xs text-gray-600 mt-1">100 Mbps untuk pengalaman online tanpa lag.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
           >
             <i class="fas fa-couch text-3xl md:text-4xl text-blue-600 mb-2"></i>
             <h3 class="text-sm md:text-base font-semibold">SOFA EMPUK & NYAMAN</h3>
-            <!-- <p class="text-xs text-gray-600 mt-1">Bermain berjam-jam tanpa lelah.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
           >
             <i class="fas fa-snowflake text-3xl md:text-4xl text-blue-600 mb-2"></i>
             <h3 class="text-sm md:text-base font-semibold">RUANGAN FULL AC</h3>
-            <!-- <p class="text-xs text-gray-600 mt-1">Tetap sejuk dan fokus saat bermain.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
           >
             <i class="fas fa-gamepad text-3xl md:text-4xl text-blue-600 mb-2"></i>
             <h3 class="text-sm md:text-base font-semibold">CONSOLE <br> PS3, PS4, PS5 & NINTENDO</h3>
-            <!-- <p class="text-xs text-gray-600 mt-1">Pilihan console lengkap sesuai selera Anda.</p> -->
           </div>
           <div
             class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center"
@@ -201,7 +202,6 @@
               HARGA TERJANGKAU <br />
               MULAI IDR 5000
             </h3>
-            <!-- <p class="text-xs text-gray-600 mt-1">Main sepuasnya tanpa khawatir biaya.</p> -->
           </div>
         </div>
       </section>
@@ -319,21 +319,30 @@
           </div>
         </div>
       </section>
+      
     </main>
+    
 
-    <footer class="bg-gray-800 text-white py-4 mt-8 md:py-6">
+    <footer class="bg-gray-600 text-white py-4 mt-8 md:py-6">
       <div class="container mx-auto text-center">
         <p class="text-xs md:text-sm">© 2025 Araya Gamestation. Semua Hak Dilindungi.</p>
       </div>
     </footer>
 
     <script>
-      const hamburgerBtn = document.getElementById('hamburger-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelectorAll('#mobile-menu a');
 
-      hamburgerBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    </script>
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>
   </body>
 </html>
