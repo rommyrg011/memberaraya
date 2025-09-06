@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$koneksi = mysqli_connect('localhost', 'root', '', 'arayagamestation');
+$koneksi = mysqli_connect('localhost', 'root', '', 'araya');
 
 //tambah member
 if(isset($_POST['tambahMember'])){
@@ -74,6 +74,29 @@ if(isset($_POST['tambahPoinMember'])){
         </script>';
     }
 }
+
+// Cek jika tombol 'tambahAdministrator' ditekan
+if (isset($_POST['tambahAdministrator'])) {
+    $cabang = htmlspecialchars($_POST['cabang']);
+    $nama_lengkap = htmlspecialchars($_POST['nama_lengkap']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $level = htmlspecialchars($_POST['level']);
+
+    // Query untuk menyimpan data ke tabel user
+    $query = "INSERT INTO user (cabang, nama_lengkap, username, password, level) VALUES ('$cabang', '$nama_lengkap', '$username', '$password', '$level')";
+
+    if (mysqli_query($koneksi, $query)) {
+        $_SESSION['notif'] = "Data administrator berhasil ditambahkan.";
+        header("location:administrator");
+        exit();
+    } else {
+        $_SESSION['notif'] = "Gagal menambahkan data: " . mysqli_error($koneksi);
+        header("location:administrator");
+        exit();
+    }
+}
+
 
 
 
