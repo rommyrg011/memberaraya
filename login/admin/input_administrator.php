@@ -23,7 +23,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "login") {
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary text-center">Input Administrator</h4>
+                            <h4 class="m-0 font-weight-bold text-primary text-center">Tambah Administrator</h4>
                         </div>
                         <form method="post" autocomplete="off">
                             <div class="card-body">
