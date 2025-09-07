@@ -73,7 +73,7 @@
         class="container mx-auto px-4 py-4 md:py-3 flex justify-between items-center"
       >
         <div class="nav-brand">
-          <a href="./" class="text-xl md:text-2xl font-bold text-blue-600">Araya Gamestation</a>
+          <a href="./" class="text-xl md:text-2xl font-bold text-yellow-400">Araya Gamestation</a>
         </div>
         <ul class="hidden md:flex md:space-x-4 lg:space-x-6 text-sm">
           <li>
@@ -189,7 +189,7 @@
           class="bg-blue-400 text-white pt-24 md:pt-32 pb-0 text-center hero-bg bg-cover bg-center overflow-hidden"
         >
           <div class="container mx-auto px-4">
-            <h1 class="text-3xl md:text-4xl lg:text-6xl font-extrabold md:mb-3 hero-title">
+            <h1 class="text-yellow-300 text-3xl md:text-4xl lg:text-6xl font-extrabold md:mb-3 hero-title">
               Araya Gamestation
             </h1>
             <p class="text-sm md:text-base lg:text font-light max-w-3xl mx-auto hero-subtitle">
@@ -198,7 +198,7 @@
            
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto mt-8 -mb-1">
-            <path fill="#f3f4f6" fill-opacity="1" 
+            <path fill="#ffffff" fill-opacity="1" 
             d="M0,64L40,80C80,96,160,128,240,128C320,128,400,96,480,117.3C560,139,640,213,720,202.7C800,192,880,96,960,85.3C1040,75,1120,149,1200,176C1280,203,1360,181,1400,170.7L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
           </svg>
         </header>
@@ -371,12 +371,14 @@
           
         </main>
         
-    
-        <footer class="bg-gray-600 text-white py-4 mt-8 md:py-6">
-          <div class="container mx-auto text-center">
-            <p class="text-xs md:text-sm">© 2025 Araya Gamestation. Semua Hak Dilindungi.</p>
-          </div>
-        </footer>
+        <footer class="relative mt-8">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto">
+        <path fill="#0099ff" fill-opacity="0.85" d="M0,192L48,186.7C96,181,192,171,288,154.7C384,139,480,117,576,133.3C672,149,768,203,864,218.7C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+    <div class="absolute bottom-0 left-0 right-0 w-full text-center">
+        <p class="text-white font-bold text-xs md:text-sm py-2">© 2025 Araya Gamestation. Semua Hak Dilindungi.</p>
+    </div>
+</footer>
     
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
