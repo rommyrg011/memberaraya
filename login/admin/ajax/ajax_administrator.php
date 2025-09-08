@@ -30,7 +30,7 @@ if ($columnIndex > 0 && $columnIndex < count($columnNames) && isset($columnNames
 }
 
 ## Query untuk total record (tanpa filter)
-$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM user");
+$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM user WHERE level='admin'");
 if (!$sel) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
@@ -45,7 +45,7 @@ if ($searchValue != '') {
    $searchQuery = " AND (nama_lengkap LIKE '%".$searchValue."%' OR
         username LIKE '%".$searchValue."%' OR LIKE '%".$searchValue."%') ";
 }
-$sel = mysqli_query($koneksi, "SELECT COUNT(id_user) AS allcount FROM user".$searchQuery);
+$sel = mysqli_query($koneksi, "SELECT COUNT(id_user) AS allcount FROM user WHERE level='admin' ".$searchQuery);
 if (!$sel) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
@@ -55,7 +55,7 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Ambil data
-$query = "SELECT * FROM user WHERE 1 ".$searchQuery." 
+$query = "SELECT * FROM user WHERE level='admin' ".$searchQuery." 
           ORDER BY ".$columnName." ".$columnSortOrder." 
           LIMIT ".$row.",".$rowperpage;
 $userRecords = mysqli_query($koneksi, $query);

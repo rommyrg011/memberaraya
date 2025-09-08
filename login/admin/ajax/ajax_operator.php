@@ -30,7 +30,8 @@ if ($columnIndex > 0 && $columnIndex < count($columnNames) && isset($columnNames
 }
 
 ## Query untuk total record (tanpa filter)
-$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM user");
+// Tambahkan klausa WHERE level='operator' untuk memfilter data
+$sel = mysqli_query($koneksi, "SELECT COUNT(*) as allcount FROM user WHERE level='operator'");
 if (!$sel) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
@@ -45,7 +46,8 @@ if ($searchValue != '') {
    $searchQuery = " AND (nama_lengkap LIKE '%".$searchValue."%' OR
         username LIKE '%".$searchValue."%' OR cabang LIKE '%".$searchValue."%') ";
 }
-$sel = mysqli_query($koneksi, "SELECT COUNT(id_user) AS allcount FROM user".$searchQuery);
+// Tambahkan klausa WHERE level='operator' sebelum $searchQuery
+$sel = mysqli_query($koneksi, "SELECT COUNT(id_user) AS allcount FROM user WHERE level='operator' ".$searchQuery);
 if (!$sel) {
     http_response_code(500);
     echo json_encode(['error' => 'Query error: ' . mysqli_error($koneksi)]);
@@ -55,7 +57,8 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Ambil data
-$query = "SELECT * FROM user WHERE 1 ".$searchQuery." 
+// Tambahkan klausa WHERE level='operator' di awal query
+$query = "SELECT * FROM user WHERE level='operator' ".$searchQuery." 
           ORDER BY ".$columnName." ".$columnSortOrder." 
           LIMIT ".$row.",".$rowperpage;
 $userRecords = mysqli_query($koneksi, $query);
