@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Araya Gamestation - Rental PlayStation Terbaik di Banjarmasin!</title>
+    <title>Araya Gamestation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
@@ -64,7 +64,16 @@
       .bg-blue-400 { background-color: rgba(96, 165, 250, 0.9); } /* Mengurangi transparansi header agar lebih solid */
       .bg-gray-600 { background-color: rgba(75, 85, 99, 0.95); } /* Footer */
 
-
+      /* Aturan CSS tambahan untuk video */
+      .header-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
     </style>
   </head>
   <body class="bg-gray-100 text-gray-800">
@@ -73,7 +82,7 @@
         class="container mx-auto px-4 py-4 md:py-3 flex justify-between items-center"
       >
         <div class="nav-brand">
-          <a href="./" class="text-xl md:text-2xl font-bold text-yellow-400">Araya Gamestation</a>
+          <a href="./" class="text-xl md:text-2xl font-bold">Araya <span class="text-gray-600">Gamestation</span></a>
         </div>
         <ul class="hidden md:flex md:space-x-4 lg:space-x-6 text-sm">
           <li>
@@ -186,18 +195,22 @@
         </nav>
     
         <header id="beranda"
-          class="bg-blue-400 text-white pt-24 md:pt-32 pb-0 text-center hero-bg bg-cover bg-center overflow-hidden"
+          class="relative pt-24 md:pt-32 pb-0 text-center hero-bg bg-cover bg-center overflow-hidden"
         >
-          <div class="container mx-auto px-4">
-            <h1 class="text-yellow-300 text-3xl md:text-4xl lg:text-6xl font-extrabold md:mb-3 hero-title">
+          <video class="header-video" autoplay muted loop playsinline>
+              <source src="login/images/bg.mp4" type="video/mp4">
+             
+          </video>
+
+          <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-white text-3xl md:text-4xl lg:text-6xl font-extrabold md:mb-3 hero-title">
               Araya Gamestation
             </h1>
-            <p class="text-sm md:text-base lg:text font-light max-w-3xl mx-auto hero-subtitle">
+            <p class="text-white text-sm md:text-base lg:text font-light max-w-3xl mx-auto hero-subtitle">
               Nikmati pengalaman gaming premium dengan console terbaru dan game terlengkap, hanya di Araya Gamestation.
             </p>
-           
           </div>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto mt-8 -mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto mt-8 -mb-1 relative z-10">
             <path fill="#ffffff" fill-opacity="1" 
             d="M0,64L40,80C80,96,160,128,240,128C320,128,400,96,480,117.3C560,139,640,213,720,202.7C800,192,880,96,960,85.3C1040,75,1120,149,1200,176C1280,203,1360,181,1400,170.7L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
           </svg>
@@ -215,14 +228,14 @@
                 class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center card-item"
               >
                 <i class="fas fa-desktop text-3xl md:text-4xl text-blue-600 mb-2"></i>
-                <h3 class="text-sm md:text-base font-semibold">SMART TV 43, 55, 65, 75 INCH</h3>
+                <h3 class="text-sm md:text-base font-semibold">SMART TV<br>43, 55, 65, 75 INCH</h3>
               </div>
               <div
                 class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center card-item"
               >
                 <i class="fas fa-wifi text-3xl md:text-4xl text-blue-600 mb-2"></i>
                 <h3 class="text-sm md:text-base font-semibold">
-                  INTERNET KECEPATAN TINGGI
+                  INTERNET 100 MBPS
                 </h3>
               </div>
               <div
@@ -241,16 +254,21 @@
                 class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center card-item"
               >
                 <i class="fas fa-gamepad text-3xl md:text-4xl text-blue-600 mb-2"></i>
-                <h3 class="text-sm md:text-base font-semibold">CONSOLE <br> PS3, PS4, PS5 & NINTENDO</h3>
+                <h3 class="text-sm md:text-base font-semibold">PS3, PS4, PS5 & NINTENDO</h3>
               </div>
               <div
                 class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center card-item"
               >
                 <i class="fas fa-dollar-sign text-3xl md:text-4xl text-blue-600 mb-2"></i>
                 <h3 class="text-sm md:text-base font-semibold">
-                  HARGA TERJANGKAU <br />
                   MULAI IDR 5000
                 </h3>
+              </div>
+              <div
+                class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col items-center text-center card-item"
+              >
+                <i class="fas fa-door-open text-3xl md:text-4xl text-blue-600 mb-2"></i>
+                <h3 class="text-sm md:text-base font-semibold">TERSEDIA VIP ROOM</h3>
               </div>
             </div>
           </section>
@@ -325,19 +343,8 @@
           <section id="lokasi" class="mb-8 md:mb-12">
             <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 section-title">Lokasi Kami</h2>
             <div class="map-container overflow-hidden rounded-lg shadow-md">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15897.68369324545!2d114.58022725!3d-3.3204996999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de423c102a00c6d%3A0x67c29e79b9a695e2!2sBanjarmasin%2C%20South%20Kalimantan!5e0!3m2!1sen!2sid!4v1701234567890!5m2!1sen!2sid"
-                width="100%"
-                height="350"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <div id="map"></div>
             </div>
-            <p class="text-center text-xs md:text-sm text-gray-500 mt-4">
-              Araya Gamestation berlokasi di pusat kota Banjarmasin, mudah dijangkau!
-            </p>
           </section>
     
           <section id="kontak" class="bg-gray-50 py-8 md:py-12 rounded-lg">
@@ -373,10 +380,10 @@
         
         <footer class="relative mt-8">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto">
-        <path fill="#0099ff" fill-opacity="0.85" d="M0,192L48,186.7C96,181,192,171,288,154.7C384,139,480,117,576,133.3C672,149,768,203,864,218.7C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      <path fill="#0099ff" fill-opacity="0.85" d="M0,192L48,186.7C96,181,192,171,288,154.7C384,139,480,117,576,133.3C672,149,768,203,864,218.7C960,235,1056,213,1152,202.7C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
     </svg>
     <div class="absolute bottom-0 left-0 right-0 w-full text-center">
-        <p class="text-white font-bold text-xs md:text-sm py-2">© 2025 Araya Gamestation. Semua Hak Dilindungi.</p>
+      <p class="text-white font-bold text-xs md:text-sm py-2">© 2025 Araya Gamestation. Semua Hak Dilindungi.</p>
     </div>
 </footer>
     

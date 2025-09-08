@@ -97,6 +97,28 @@ if (isset($_POST['tambahAdministrator'])) {
     }
 }
 
+// Cek jika tombol 'tambahOperator' ditekan
+if (isset($_POST['tambahOperator'])) {
+    $cabang = htmlspecialchars($_POST['cabang']);
+    $nama_lengkap = htmlspecialchars($_POST['nama_lengkap']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $level = htmlspecialchars($_POST['level']);
+
+    // Query untuk menyimpan data ke tabel user
+    $query = "INSERT INTO user (cabang, nama_lengkap, username, password, level) VALUES ('$cabang', '$nama_lengkap', '$username', '$password', '$level')";
+
+    if (mysqli_query($koneksi, $query)) {
+        $_SESSION['notif'] = "Data operator berhasil ditambahkan.";
+        header("location:operator");
+        exit();
+    } else {
+        $_SESSION['notif'] = "Gagal menambahkan data: " . mysqli_error($koneksi);
+        header("location:operator");
+        exit();
+    }
+}
+
 
 
 
