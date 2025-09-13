@@ -1,0 +1,414 @@
+:root {
+    --dark-background: #1e1e2d;
+    --unpaid-red: #e60000;
+    --light-text: #ffffff;
+    --dark-text: #2a2a2a;
+    --grey-text: #888;
+    --divider-color: #f0f0f0;
+}
+
+/* ===================================== */
+/* === Styling Dasar (Desktop) === */
+/* ===================================== */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.invoice-page {
+    width: 100%;
+    max-width: 800px;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.download-button {
+    background-color: var(--dark-background);
+    color: var(--light-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.invoice-container {
+    background-color: var(--light-text);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.invoice-header {
+    background-color: var(--dark-background);
+    color: var(--light-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo-area img {
+    height: 40px;
+    margin-right: 15px;
+}
+
+.header-details {
+    text-align: right;
+    font-weight: bold;
+}
+
+.unpaid-stamp {
+    font-size: 16px;
+    color: var(--unpaid-red);
+    border: 2px solid var(--unpaid-red);
+    padding: 5px 10px;
+    transform: rotate(-10deg);
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.invoice-number {
+    font-size: 18px;
+}
+
+.invoice-date {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: normal;
+}
+
+.content-section {
+    padding: 30px;
+}
+
+.invoice-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.info-label {
+    color: var(--grey-text);
+    font-size: 14px;
+}
+
+.info-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--dark-text);
+    margin-top: 5px;
+}
+
+.info-contact, .info-account-holder {
+    font-size: 14px;
+    color: #555;
+    margin-top: 3px;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: var(--divider-color);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.item-table-section {
+    font-size: 14px;
+}
+
+.item-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 15px;
+    padding-bottom: 15px;
+}
+
+.header-row {
+    color: var(--grey-text);
+    font-weight: normal;
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: 10px;
+}
+
+.data-row {
+    color: var(--dark-text);
+    font-weight: bold;
+    padding-top: 15px;
+}
+
+.column-total {
+    text-align: right;
+}
+
+.package-details-section {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.details-label {
+    color: var(--dark-text);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.package-details-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+    color: #555;
+}
+
+.package-details-section li {
+    margin-bottom: 5px;
+}
+
+.summary-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: var(--light-text);
+    border-top: 1px solid var(--divider-color);
+}
+
+.summary-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-item .label {
+    font-size: 12px;
+    color: var(--grey-text);
+}
+
+.summary-item .amount {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--dark-text);
+}
+
+.plus-icon {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.total-box {
+    background-color: var(--dark-background);
+    color: var(--light-text);
+    padding: 15px 30px;
+    border-radius: 8px;
+    margin-left: 20px;
+    text-align: right;
+}
+
+.total-box .label {
+    font-size: 14px;
+}
+
+.total-box .total-amount {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.contact-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ===================================== */
+/* === Media Queries untuk Responsivitas === */
+/* ===================================== */
+
+/* Tablet (lebar max 768px) */
+@media (max-width: 768px) {
+    /* Mengurangi ukuran elemen untuk tablet */
+    .invoice-container {
+        padding: 15px;
+    }
+    
+    .invoice-header {
+        padding: 20px;
+    }
+
+    .logo-area {
+        font-size: 20px;
+    }
+    
+    .logo-area img {
+        height: 35px;
+        margin-right: 10px;
+    }
+
+    .invoice-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .payment-method {
+        text-align: left;
+    }
+    
+    .item-table-section {
+        font-size: 12px; /* Ukuran font tabel lebih kecil */
+    }
+
+    .item-row {
+        gap: 10px;
+    }
+    
+    .column-package, .column-period, .column-total {
+        text-align: left;
+    }
+    
+    .summary-footer {
+        padding: 15px;
+    }
+    
+    .total-box {
+        padding: 12px 20px;
+    }
+    
+    .total-box .total-amount {
+        font-size: 20px;
+    }
+}
+
+/* Mobile (lebar max 480px) */
+@media (max-width: 480px) {
+    /* Mengurangi ukuran elemen untuk mobile */
+    .invoice-container {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .nav-bar {
+        padding: 0 10px;
+    }
+
+    .invoice-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .header-details {
+        margin-top: 15px;
+        text-align: left;
+    }
+    
+    .logo-area {
+        font-size: 18px;
+    }
+    
+    .logo-area img {
+        height: 30px;
+    }
+
+    .content-section {
+        padding: 15px;
+    }
+    
+    .info-value, .info-label, .info-contact, .info-account-holder {
+        font-size: 12px;
+    }
+    
+    .info-value {
+        font-size: 16px;
+    }
+
+    .item-table-section {
+        font-size: 11px;
+        overflow-x: auto;
+    }
+    
+    .item-row {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .item-row div {
+        text-align: left;
+    }
+    
+    .summary-footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .summary-details {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .summary-item .label {
+        font-size: 10px;
+    }
+    
+    .summary-item .amount {
+        font-size: 16px;
+    }
+    
+    .plus-icon {
+        display: none; /* Menyembunyikan ikon '+' untuk tampilan yang lebih sederhana */
+    }
+
+    .total-box {
+        margin-top: 15px;
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 15px;
+    }
+
+    .total-box .label {
+        font-size: 12px;
+    }
+    
+    .total-box .total-amount {
+        font-size: 20px;
+    }
+
+    .contact-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        padding: 15px;
+        font-size: 12px;
+    }
+}
