@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$koneksi = mysqli_connect('localhost', 'root', '', 'araya');
+$koneksi = mysqli_connect('localhost', 'root', '', 'arayagamestation');
 
 //tambah member
 if(isset($_POST['tambahMember'])){
